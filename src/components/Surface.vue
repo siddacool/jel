@@ -1,26 +1,18 @@
 <template>
   <div class="surface" id="surface">
-    <section :style="{ background: color }"></section>
+    <section :style="{ background: backdrop }"></section>
   </div>
 </template>
 
 <script>
 export default {
   name: 'surface',
-  props: {
-    colors: [String, Object]
-  },
   computed: {
     // a computed getter
-    color() {
+    backdrop() {
       // `this` points to the vm instance
-      return this.colors.hex ? this.colors.hex : this.colors;
+      return this.$store.state.backdrop;
     }
-  },
-  data() {
-    return {
-      backdrop: this.$store.state.backdrop
-    };
   }
 };
 </script>

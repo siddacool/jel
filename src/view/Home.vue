@@ -1,7 +1,11 @@
 <template>
   <div class="home-landing">
-    <Surface :colors="colors" />
-    <chrome-picker v-model="colors" class="color-picker" />
+    <Surface />
+    <chrome-picker
+      :value="backdrop"
+      @input="updateValue"
+      class="color-picker"
+    />
   </div>
 </template>
 
@@ -13,12 +17,17 @@ export default {
   name: 'Home',
   data() {
     return {
-      colors: '#194d33'
+      backdrop: this.$store.state.backdrop
     };
   },
   components: {
     Surface,
     'chrome-picker': Chrome
+  },
+  methods: {
+    updateValue(e) {
+      this.$store.dispatch('changeBackDrop', e);
+    }
   }
 };
 </script>
