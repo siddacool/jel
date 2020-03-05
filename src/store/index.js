@@ -1,8 +1,14 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-// import VuexPersist from 'vuex-persist';
+import VuexPersist from 'vuex-persist';
 
 Vue.use(Vuex);
+
+const vuexPersist = new VuexPersist({
+  key: 'jel-20200305-vue-storage',
+  storage: localStorage,
+  reducer: state => ({ backdrop: state.backdrop })
+});
 
 export default new Vuex.Store({
   state: {
@@ -19,5 +25,5 @@ export default new Vuex.Store({
       context.commit('setBackdrop', color);
     }
   },
-  modules: {}
+  plugins: [vuexPersist.plugin]
 });
