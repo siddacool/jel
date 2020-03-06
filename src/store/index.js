@@ -12,17 +12,33 @@ const vuexPersist = new VuexPersist({
 
 export default new Vuex.Store({
   state: {
-    backdrop: '#eee'
+    backdrop: '#eee',
+    isColorPickerVisible: true
   },
   mutations: {
     setBackdrop(state, color) {
       state.backdrop = color;
+    },
+    toggleColorPickerVisibility(state) {
+      state.isColorPickerVisible = !state.isColorPickerVisible;
+    },
+    setColorPickerVisibility(state, visibility) {
+      state.isColorPickerVisible = visibility;
     }
   },
   actions: {
     changeBackDrop(context, payload) {
       const color = payload.hex ? payload.hex : payload;
       context.commit('setBackdrop', color);
+    },
+    showColorPicker(context) {
+      context.commit('setColorPickerVisibility', true);
+    },
+    hideColorPicker(context) {
+      context.commit('setColorPickerVisibility', false);
+    },
+    toggleColorPicker(context) {
+      context.commit('toggleColorPickerVisibility');
     }
   },
   plugins: [vuexPersist.plugin]
