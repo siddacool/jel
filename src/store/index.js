@@ -7,7 +7,10 @@ Vue.use(Vuex);
 const vuexPersist = new VuexPersist({
   key: 'jel-20200305-vue-storage',
   storage: localStorage,
-  reducer: state => ({ backdrop: state.backdrop })
+  reducer: state => ({
+    backdrop: state.backdrop,
+    isColorPickerVisible: state.isColorPickerVisible
+  })
 });
 
 export default new Vuex.Store({
