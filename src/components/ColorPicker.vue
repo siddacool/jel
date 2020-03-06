@@ -101,8 +101,8 @@ export default {
 @media only screen and (min-width: 1025px),
   screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   .color-picker {
-    top: var(--fencing-desktop-verticle);
-    left: var(--fencing-desktop-horizontal);
+    top: calc(30% - (var(--color-picker-width) / 2));
+    left: calc(50% - (var(--color-picker-width) / 2));
     bottom: initial;
     width: 256px;
     border-radius: var(--round-desktop-card);

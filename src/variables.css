@@ -14,4 +14,7 @@
   /* Border Radius */
   --round-desktop-card: 4px;
   --round-card: 0;
+
+  /* Color Picker */
+  --color-picker-width: 256px;
 }
