@@ -1,5 +1,9 @@
 <template>
-  <button class="btn" :class="[colorClass, svgSizeClass, noGlassClass]" @click="action">
+  <button
+    class="btn"
+    :class="[colorClass, sizeClass, svgSizeClass, noGlassClass]"
+    @click="action"
+  >
     <slot></slot>
   </button>
 </template>
@@ -12,8 +16,12 @@ export default {
       validator: value => ['default', 'danger'].indexOf(value) !== -1,
       default: 'default'
     },
+    size: {
+      validator: value => ['xsmall', 'small', 'medium', 'big', 'large', 'xlarge'].indexOf(value) !== -1,
+      default: 'medium'
+    },
     svgSize: {
-      validator: value => ['small', 'medium', 'big', 'large', 'xlarge', 'xxlarge'].indexOf(value) !== -1,
+      validator: value => ['xxsmall', 'xsmall', 'small', 'medium', 'big', 'large', 'xlarge', 'xxlarge'].indexOf(value) !== -1,
       default: 'medium'
     },
     action: {
@@ -28,15 +36,15 @@ export default {
   computed: {
     // a computed getter
     colorClass() {
-      // `this` points to the vm instance
       return this.color;
     },
+    sizeClass() {
+      return this.size;
+    },
     svgSizeClass() {
-      // `this` points to the vm instance
-      return this.svgSize;
+      return `svg-${this.svgSize}`;
     },
     noGlassClass() {
-      // `this` points to the vm instance
       return this.noGlass ? 'no-glass' : '';
     }
   }
@@ -62,10 +70,32 @@ export default {
   opacity: 1;
 }
 
-.btn svg {
-  height: 14px;
-  width: 14px;
+/* Size */
+.btn.xsmall {
+  width: 30px;
+  height: 30px;
 }
+
+.btn.small {
+  width: 36px;
+  height: 36px;
+}
+
+.btn.medium {
+  width: 40px;
+  height: 40px;
+}
+
+.btn.large {
+  width: 50px;
+  height: 50px;
+}
+
+.btn.xlarge {
+  height: 70px;
+  width: 70px;
+}
+/* x -- Size */
 
 /* Color */
 .btn.default {
@@ -95,32 +125,42 @@ export default {
 }
 /* x -- Color */
 /* svg size */
-.btn.small svg {
+.btn.xsvg-xxsmall svg {
+  height: 6px;
+  width: 6px;
+}
+
+.btn.svg-xsmall svg {
+  height: 10px;
+  width: 10px;
+}
+
+.btn.svg-small svg {
   height: 14px;
   width: 14px;
 }
 
-.btn.medium svg {
+.btn.svg-medium svg {
   height: 16px;
   width: 16px;
 }
 
-.btn.big svg {
+.btn.svg-big svg {
   height: 18px;
   width: 18px;
 }
 
-.btn.large svg {
+.btn.svg-large svg {
   height: 20px;
   width: 20px;
 }
 
-.btn.xlarge svg {
+.btn.svg-xlarge svg {
   height: 22px;
   width: 22px;
 }
 
-.btn.xxlarge svg {
+.btn.svg-xxlarge svg {
   height: 24px;
   width: 24px;
 }

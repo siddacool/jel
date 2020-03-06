@@ -3,7 +3,9 @@
     <icon-btn
       :action="hideColorPicker"
       color="danger"
-      style="margin-left: auto;"
+      :style="closeButtonStyle"
+      svgSize="xsmall"
+      size="xsmall"
       noGlass
     >
       <svg
@@ -34,7 +36,8 @@ export default {
   name: 'ColorPicker',
   data() {
     return {
-      backdrop: this.$store.state.backdrop
+      backdrop: this.$store.state.backdrop,
+      closeButtonStyle: 'position: absolute; right: 6px; top: 6px;'
     };
   },
   components: {
@@ -80,7 +83,7 @@ export default {
 }
 
 .color-picker-ui-enclosure {
-  padding-top: 1.2rem;
+  padding-top: 2rem;
 }
 
 @media only screen and (min-width: 1025px),
