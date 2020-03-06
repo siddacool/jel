@@ -1,5 +1,17 @@
 :root {
   /* Colors */
-  --color-ui-default: #bdbdbd;
+  --color-ui-default: #EEEEEE;
+  --color-ui-dark: #212121;
+  --color-ui-bright: #ffffff;
   --color-ui-danger: #f44336;
+
+  /* Fencing */
+  --fencing-verticle: 2rem;
+  --fencing-horizontal: 2rem;
+  --fencing-desktop-verticle: 2rem;
+  --fencing-desktop-horizontal: 2rem;
+
+  /* Border Radius */
+  --round-desktop-card: 3px;
+  --round-card: 0;
 }

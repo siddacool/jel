@@ -1,7 +1,7 @@
 <template>
-  <div class="color-picker" id="color-picker" v-show="isColorPickerVisible" >
+  <div class="color-picker" id="color-picker" v-show="isColorPickerVisible">
     <icon-btn
-      :click="hideColorPicker"
+      :action="hideColorPicker"
       color="danger"
       style="margin-left: auto;"
     >
@@ -38,7 +38,7 @@ export default {
   },
   components: {
     'chrome-picker': Chrome,
-    'icon-btn': IconButton,
+    'icon-btn': IconButton
   },
   computed: {
     // a computed getter
@@ -63,14 +63,16 @@ export default {
 .color-picker {
   position: fixed;
   z-index: 1000;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100vw;
   box-shadow: 0 0 2px rgba(0,0,0,.3),0 4px 8px rgba(0,0,0,.3);
   background-color: #fff;
   padding-top: 1.2rem;
   padding: 1.2rem;
+  border-radius: var(--round-card);
 }
+
 .color-picker-ui {
   box-shadow: none;
   width: 100%;
@@ -80,30 +82,14 @@ export default {
   padding-top: 1.2rem;
 }
 
-.color-picker-close {
-  display: flex;
-  background-color: #ff0058;
-  padding: 0.5rem;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  box-shadow: 0 0 2px rgba(255, 0, 88, 0.3), 1px 1px 4px rgba(255, 0, 88, 0.3);
-  margin-left: auto;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.color-picker-close svg {
-  height: 14px;
-  width: 14px;
-  fill: #fff;
-}
-
 @media only screen and (min-width: 1025px),
   screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   .color-picker {
+    top: var(--fencing-desktop-verticle);
+    left: var(--fencing-desktop-horizontal);
+    bottom: initial;
     width: 256px;
+    border-radius: var(--round-desktop-card);
   }
 }
 </style>
