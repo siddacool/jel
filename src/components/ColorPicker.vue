@@ -63,7 +63,7 @@ export default {
     hideColorPicker() {
       this.$store.dispatch('hideColorPicker');
     }
-  },
+  }
 };
 </script>
 

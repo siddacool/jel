@@ -1,5 +1,5 @@
 <template>
-  <div class="surface" id="surface">
+  <div class="surface" id="surface" @click="hideColorPicker">
     <section :style="{ background: backdrop }"></section>
   </div>
 </template>
@@ -12,6 +12,11 @@ export default {
     backdrop() {
       // `this` points to the vm instance
       return this.$store.state.backdrop;
+    }
+  },
+  methods: {
+    hideColorPicker() {
+      this.$store.dispatch('hideColorPicker');
     }
   }
 };
