@@ -1,5 +1,5 @@
 <template>
-  <button class="btn" :class="[colorClass, svgSizeClass]" @click="action">
+  <button class="btn" :class="[colorClass, svgSizeClass, noGlassClass]" @click="action">
     <slot></slot>
   </button>
 </template>
@@ -19,6 +19,10 @@ export default {
     action: {
       type: Function,
       default: e => e.preventDefault()
+    },
+    noGlass: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -30,6 +34,10 @@ export default {
     svgSizeClass() {
       // `this` points to the vm instance
       return this.svgSize;
+    },
+    noGlassClass() {
+      // `this` points to the vm instance
+      return this.noGlass ? 'no-glass' : '';
     }
   }
 };
@@ -46,6 +54,12 @@ export default {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 400ms, box-shadow 400ms;
+}
+
+.btn:hover {
+  opacity: 1;
 }
 
 .btn svg {
@@ -59,6 +73,10 @@ export default {
   box-shadow: 0 0 2px rgba(189, 189, 189, 0.3), 1px 1px 4px rgba(189, 189, 189, 0.3);
 }
 
+.btn:hover.default {
+  box-shadow: 0 0 4px rgba(189, 189, 189, 0.3), 2px 2px 8px rgba(189, 189, 189, 0.3);
+}
+
 .btn.default svg {
   fill: var(--color-ui-dark);
 }
@@ -66,6 +84,10 @@ export default {
 .btn.danger {
   background-color: var(--color-ui-danger);
   box-shadow: 0 0 2px rgba(244, 67, 54, 0.3), 1px 1px 4px rgba(244, 67, 54, 0.3);
+}
+
+.btn:hover.danger {
+  box-shadow: 0 0 4px rgba(244, 67, 54, 0.3), 2px 2px 8px rgba(244, 67, 54, 0.3);
 }
 
 .btn.danger svg {
@@ -103,4 +125,9 @@ export default {
   width: 24px;
 }
 /* x -- svg size */
+
+/* No Glass */
+.btn.no-glass {
+  opacity: 1;
+}
 </style>

@@ -4,6 +4,7 @@
       :action="hideColorPicker"
       color="danger"
       style="margin-left: auto;"
+      noGlass
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
