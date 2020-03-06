@@ -15,7 +15,7 @@ const vuexPersist = new VuexPersist({
 
 export default new Vuex.Store({
   state: {
-    backdrop: '#eee',
+    backdrop: '#f5207a',
     isColorPickerVisible: true
   },
   mutations: {
