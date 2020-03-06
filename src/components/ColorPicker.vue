@@ -18,6 +18,7 @@
           d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/>
       </svg>
     </icon-btn>
+    <span class="hex-val">{{ backdropFresh }}</span>
     <div class="color-picker-ui-enclosure">
       <chrome-picker
         :value="backdrop"
@@ -49,6 +50,10 @@ export default {
     isColorPickerVisible() {
       // `this` points to the vm instance
       return this.$store.state.isColorPickerVisible;
+    },
+    backdropFresh() {
+      // `this` points to the vm instance
+      return this.$store.state.backdrop;
     }
   },
   methods: {
@@ -58,7 +63,7 @@ export default {
     hideColorPicker() {
       this.$store.dispatch('hideColorPicker');
     }
-  }
+  },
 };
 </script>
 
@@ -72,8 +77,8 @@ export default {
   width: 100vw;
   box-shadow: 0 0 2px rgba(0,0,0,.3),0 4px 8px rgba(0,0,0,.3);
   background-color: #fff;
-  padding-top: 1.2rem;
   padding: 1.2rem;
+  padding-bottom: 3.6rem;
   border-radius: var(--round-card);
 }
 
@@ -86,6 +91,13 @@ export default {
   padding-top: 2rem;
 }
 
+.hex-val {
+  position: absolute;
+  left: 56px;
+  top: 19px;
+  font-weight: 500;
+}
+
 @media only screen and (min-width: 1025px),
   screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   .color-picker {
@@ -94,6 +106,11 @@ export default {
     bottom: initial;
     width: 256px;
     border-radius: var(--round-desktop-card);
+    padding-bottom: 1.2rem;
+  }
+
+  .color-picker-ui-enclosure {
+    padding-top: 2rem;
   }
 }
 </style>
