@@ -88,10 +88,10 @@ export default {
   display: none;
 }
 
-/* #app .vc-chrome-sliders {
+#app .vc-chrome-sliders {
   padding-left: var(--fencing-horizontal);
   padding-right: var(--fencing-horizontal);
-} */
+}
 
 .color-picker {
   position: fixed;
