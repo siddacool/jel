@@ -35,11 +35,6 @@ import IconButton from './icon-button';
 
 export default {
   name: 'color-picker',
-  data() {
-    return {
-      closeButtonStyle: 'position: absolute; right: 6px; top: 6px;'
-    };
-  },
   props: {
     backdrop: String,
     show: Boolean,
@@ -123,18 +118,25 @@ export default {
   top: 10px;
 }
 
-/* Color Circle */
+/* Color Circle, it's hidden */
 #app .vc-chrome-color-wrap {
   position: absolute;
   top: 10px;
   left: var(--fencing-horizontal);
+  display: none;
 }
 
 .hex-val {
   position: absolute;
-  left: calc(var(--fencing-horizontal) + var(--fencing-horizontal) + 0.5rem);
+  left: var(--fencing-horizontal);
   top: 19px;
   font-weight: 500;
+}
+
+/* Slick Colorpicker */
+:root {
+  --slick-colorpicker-fencing-verticle: 0.8rem;
+  --slick-colorpicker-fencing-horizontal: 0.5rem;
 }
 
 @media only screen and (min-width: 1025px),
@@ -142,14 +144,49 @@ export default {
   .color-picker {
     top: calc(30% - (var(--color-picker-width) / 2));
     left: calc(50% - (var(--color-picker-width) / 2));
+    padding-left: var(--slick-colorpicker-fencing-horizontal);
+    padding-right: var(--slick-colorpicker-fencing-horizontal);
+    padding-top: var(--slick-colorpicker-fencing-verticle);
+    padding-bottom: var(--slick-colorpicker-fencing-verticle);
     bottom: initial;
     width: 256px;
     border-radius: var(--round-desktop-card);
-    padding-bottom: 1.2rem;
   }
 
   .color-picker-ui-enclosure {
     padding-top: 2rem;
+  }
+
+
+  #app .vc-chrome-body {
+    padding-top: var(--slick-colorpicker-fencing-verticle);
+  }
+
+  #app .vc-chrome-sliders {
+    padding: 0;
+  }
+
+  /* Color Circle */
+  #app .vc-chrome-color-wrap {
+    left: var(--slick-colorpicker-fencing-horizontal);
+  }
+
+  .hex-val {
+    left: var(--slick-colorpicker-fencing-horizontal);
+    font-size: 14px;
+  }
+
+  .color-picker-close {
+    right: var(--slick-colorpicker-fencing-horizontal);
+  }
+
+  /* Hue bar height */
+  #app .vc-chrome-hue-wrap {
+    height: 10px;
+  }
+
+  #app .vc-chrome-hue-wrap .vc-hue-picker {
+    height: 12px;
   }
 }
 </style>
