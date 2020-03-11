@@ -1,6 +1,6 @@
 <template>
   <vue-context v-show="!show">
-    <li><a href="#" @click.prevent="showColorPicker">Color Picker</a></li>
+    <li><a href="#" @click.prevent="toggleColorPicker">Color Picker</a></li>
   </vue-context>
 </template>
 
@@ -22,8 +22,8 @@ export default {
     }
   },
   methods: {
-    showColorPicker() {
-      this.$store.dispatch('showColorPicker');
+    toggleColorPicker() {
+      this.$store.dispatch('toggleColorPicker');
     }
   }
 };
