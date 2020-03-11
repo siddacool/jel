@@ -1,6 +1,11 @@
 <template>
   <vue-context v-show="!show">
-    <li><a href="#" @click.prevent="toggleColorPicker">Color Picker</a></li>
+    <li>
+      <a href="#" @click.prevent="toggleColorPicker">
+        <input type="checkbox" :checked="isColorPickerVisible" />
+        Color Picker
+      </a>
+    </li>
   </vue-context>
 </template>
 
