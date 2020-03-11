@@ -1,5 +1,9 @@
 <template>
-  <div class="color-picker" v-show="show">
+  <div
+    class="color-picker"
+    v-show="show"
+    :style="position ? `top:${position.y}px; left:${position.x}px` : null"
+  >
     <icon-btn
       :action="hideColorPicker"
       color="danger"
@@ -45,12 +49,44 @@ export default {
   components: {
     'chrome-picker': Chrome,
     'icon-btn': IconButton
+  },
+  computed: {
+    position() {
+      if (window.innerWidth < 1025) return null;
+
+      let { x, y } = this.$store.state.cursorPoistion;
+
+      const fencing = {
+        left: 32,
+        top: 32,
+        right: window.innerWidth - 32 - 256,
+        bottom: window.innerHeight - 32 - 213
+      };
+
+      if (x < fencing.left) x = fencing.left;
+      if (x > fencing.right) x = fencing.right;
+      if (y < fencing.top) y = fencing.top;
+      if (y > fencing.bottom) y = fencing.bottom;
+
+      return {
+        x,
+        y
+      };
+    }
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+:root {
+  /* Slick Colorpicker */
+  --slick-colorpicker-fencing-verticle: 0.8rem;
+  --slick-colorpicker-fencing-horizontal: 0.5rem;
+  --slick-colorpicker-width: 256px;
+  --slick-colorpicker-height: 213px;
+}
+
 /* full width */
 #app .vc-chrome {
   box-shadow: none;
@@ -133,12 +169,6 @@ export default {
   font-weight: 500;
 }
 
-/* Slick Colorpicker */
-:root {
-  --slick-colorpicker-fencing-verticle: 0.8rem;
-  --slick-colorpicker-fencing-horizontal: 0.5rem;
-}
-
 @media only screen and (min-width: 1025px),
   screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   .color-picker {
@@ -149,7 +179,8 @@ export default {
     padding-top: var(--slick-colorpicker-fencing-verticle);
     padding-bottom: var(--slick-colorpicker-fencing-verticle);
     bottom: initial;
-    width: 256px;
+    width: var(--slick-colorpicker-width);
+    height: var(--slick-colorpicker-height);
     border-radius: var(--round-desktop-card);
   }
 

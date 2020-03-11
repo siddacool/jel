@@ -3,8 +3,8 @@
     <div
       class="surface"
       id="surface"
-      @click="hideColorPicker"
-      @contextmenu.prevent="$refs.menu.$children[0].open"
+      @click="e => handleLeftClick(e)"
+      @contextmenu.prevent="(e, data) => handleRightClick(e, data)"
     >
       <section :style="{ background: backdrop }"></section>
     </div>
@@ -14,6 +14,7 @@
 
 <script>
 import ContextMenu from './ContextMenu.vue';
+import { getMousePoisotion } from '../utils';
 
 export default {
   name: 'surface',
@@ -32,8 +33,18 @@ export default {
     }
   },
   methods: {
-    hideColorPicker() {
+    commonClickActions(e) {
+      // --slick-colorpicker-width: 256px;
+      // --slick-colorpicker-height: 213px;
       this.$store.dispatch('hideColorPicker');
+      this.$store.dispatch('changeCursorPosition', getMousePoisotion(e));
+    },
+    handleLeftClick(e) {
+      this.commonClickActions(e);
+    },
+    handleRightClick(e, data) {
+      this.commonClickActions(e);
+      this.$refs.menu.$children[0].open(e, data);
     }
   }
 };
