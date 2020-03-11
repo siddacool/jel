@@ -1,31 +1,34 @@
 <template>
-  <div class="surface" id="surface" @click="hideColorPicker" @contextmenu.prevent="$refs.menu.open">
-    <section :style="{ background: backdrop }"></section>
-
-      <vue-context ref="menu">
-      <li>
-          <a href="#" @click.prevent="onClick($event.target.innerText)">Color Picker</a>
-      </li>
-      <li>
-          <a href="#" @click.prevent="onClick($event.target.innerText)">Option 2</a>
-      </li>
-  </vue-context>
+  <div>
+    <div
+      class="surface"
+      id="surface"
+      @click="hideColorPicker"
+      @contextmenu.prevent="$refs.menu.$children[0].open"
+    >
+      <section :style="{ background: backdrop }"></section>
+    </div>
+    <ContextMenu ref="menu" :show="isColorPickerVisible" />
   </div>
 </template>
 
 <script>
-import { VueContext } from 'vue-context';
+import ContextMenu from './ContextMenu.vue';
 
 export default {
   name: 'surface',
   components: {
-    'vue-context': VueContext,
+    ContextMenu
   },
   computed: {
     // a computed getter
     backdrop() {
       // `this` points to the vm instance
       return this.$store.state.backdrop;
+    },
+    isColorPickerVisible() {
+      // `this` points to the vm instance
+      return this.$store.state.isColorPickerVisible;
     }
   },
   methods: {
@@ -37,9 +40,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-@import '~vue-context/dist/css/vue-context.css';
-
+<style scoped>
 .surface {
   width: 100vw;
   height: 100vh;
