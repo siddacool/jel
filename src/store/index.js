@@ -18,8 +18,8 @@ export default new Vuex.Store({
     backdrop: '#f5207a',
     isColorPickerVisible: true,
     cursorPoistion: {
-      x: null,
-      y: null
+      x: 32,
+      y: 32
     }
   },
   mutations: {
@@ -53,6 +53,12 @@ export default new Vuex.Store({
     changeCursorPosition(context, payload) {
       if (!payload || !payload.x || !payload.y) return;
       context.commit('setCursorPosition', payload);
+    },
+    resetCursorPosition(context) {
+      context.commit('setCursorPosition', {
+        x: 32,
+        y: 32
+      });
     }
   },
   plugins: [vuexPersist.plugin]

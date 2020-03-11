@@ -27,6 +27,7 @@ export default {
   },
   methods: {
     showColorPicker() {
+      this.$store.dispatch('resetCursorPosition');
       this.$store.dispatch('showColorPicker');
     }
   }
