@@ -16,7 +16,11 @@ const vuexPersist = new VuexPersist({
 export default new Vuex.Store({
   state: {
     backdrop: '#f5207a',
-    isColorPickerVisible: true
+    isColorPickerVisible: true,
+    cursorPoistion: {
+      x: 32,
+      y: 32
+    }
   },
   mutations: {
     setBackdrop(state, color) {
@@ -27,6 +31,9 @@ export default new Vuex.Store({
     },
     setColorPickerVisibility(state, visibility) {
       state.isColorPickerVisible = visibility;
+    },
+    setCursorPosition(state, pos) {
+      state.cursorPoistion = pos;
     }
   },
   actions: {
@@ -42,6 +49,16 @@ export default new Vuex.Store({
     },
     toggleColorPicker(context) {
       context.commit('toggleColorPickerVisibility');
+    },
+    changeCursorPosition(context, payload) {
+      if (!payload || !payload.x || !payload.y) return;
+      context.commit('setCursorPosition', payload);
+    },
+    resetCursorPosition(context) {
+      context.commit('setCursorPosition', {
+        x: 32,
+        y: 32
+      });
     }
   },
   plugins: [vuexPersist.plugin]
