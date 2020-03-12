@@ -3,8 +3,11 @@
     <div
       class="surface"
       id="surface"
+      @mousemove.passive="e => mouseMove(e)"
       @click="e => handleLeftClick(e)"
       @contextmenu.prevent="(e, data) => handleRightClick(e, data)"
+      v-shortkey="['alt', 'p']"
+      @shortkey="bla()"
     >
       <section :style="{ background: backdrop }"></section>
     </div>
@@ -39,6 +42,10 @@ export default {
       this.$store.dispatch('hideColorPicker');
       this.$store.dispatch('changeCursorPosition', getMousePoisotion(e));
     },
+    mouseMove(e) {
+      if (this.isColorPickerVisible || getWindowDimention().x < 1025) return;
+      this.$store.dispatch('changeCursorPosition', getMousePoisotion(e));
+    },
     handleLeftClick(e) {
       this.commonClickActions(e);
     },
@@ -47,6 +54,9 @@ export default {
       if (width < 1025) return null;
       this.commonClickActions(e);
       this.$refs.menu.$children[0].open(e, data);
+    },
+    bla() {
+      this.$store.dispatch('showColorPicker');
     }
   }
 };
