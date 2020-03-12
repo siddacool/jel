@@ -36,6 +36,7 @@
 <script>
 import { Chrome } from 'vue-color';
 import IconButton from './icon-button';
+import { getWindowDimention } from '../utils';
 
 export default {
   name: 'color-picker',
@@ -52,15 +53,16 @@ export default {
   },
   computed: {
     position() {
-      if (window.innerWidth < 1025) return null;
+      const { x: width, y: height } = getWindowDimention();
+      if (width < 1025) return null;
 
       let { x, y } = this.$store.state.cursorPoistion;
 
       const fencing = {
         left: 32,
         top: 32,
-        right: window.innerWidth - 32 - 256,
-        bottom: window.innerHeight - 32 - 213
+        right: width - 32 - 256,
+        bottom: height - 32 - 213
       };
 
       if (x < fencing.left) x = fencing.left;
