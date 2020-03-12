@@ -8,7 +8,7 @@
     >
       <section :style="{ background: backdrop }"></section>
     </div>
-    <ContextMenu ref="menu" :show="isColorPickerVisible" />
+    <ContextMenu ref="menu" />
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <vue-context v-show="!show">
+  <vue-context>
     <li>
       <a href="#" @click.prevent="toggleColorPicker">Color Picker</a>
     </li>
@@ -13,15 +13,6 @@ export default {
   name: 'ContextMenu',
   components: {
     'vue-context': VueContext
-  },
-  props: {
-    show: Boolean
-  },
-  computed: {
-    isColorPickerVisible() {
-      // `this` points to the vm instance
-      return this.$store.state.isColorPickerVisible;
-    }
   },
   methods: {
     toggleColorPicker() {
