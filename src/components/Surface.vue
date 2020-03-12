@@ -7,7 +7,7 @@
       @click="e => handleLeftClick(e)"
       @contextmenu.prevent="(e, data) => handleRightClick(e, data)"
       v-shortkey="['alt', 'p']"
-      @shortkey="bla()"
+      @shortkey="toggleColorPicker()"
     >
       <section :style="{ background: backdrop }"></section>
     </div>
@@ -55,8 +55,8 @@ export default {
       this.commonClickActions(e);
       this.$refs.menu.$children[0].open(e, data);
     },
-    bla() {
-      this.$store.dispatch('showColorPicker');
+    toggleColorPicker() {
+      this.$store.dispatch('toggleColorPicker');
     }
   }
 };
