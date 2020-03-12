@@ -57,12 +57,14 @@ export default {
       if (width < 1025) return null;
 
       let { x, y } = this.$store.state.cursorPoistion;
+      const colorPickerWidth = 256;
+      const colorPickerHeight = 213;
 
       const fencing = {
         left: 32,
         top: 32,
-        right: width - 32 - 256,
-        bottom: height - 32 - 213
+        right: width - 32 - colorPickerWidth,
+        bottom: height - 32 - colorPickerHeight
       };
 
       if (x < fencing.left) x = fencing.left;
