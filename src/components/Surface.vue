@@ -14,7 +14,7 @@
 
 <script>
 import ContextMenu from './ContextMenu.vue';
-import { getMousePoisotion } from '../utils';
+import { getMousePoisotion, getWindowDimention } from '../utils';
 
 export default {
   name: 'surface',
@@ -43,6 +43,8 @@ export default {
       this.commonClickActions(e);
     },
     handleRightClick(e, data) {
+      const { x: width } = getWindowDimention();
+      if (width < 1025) return null;
       this.commonClickActions(e);
       this.$refs.menu.$children[0].open(e, data);
     }
