@@ -1,29 +1,3 @@
-# jel
+<img src="https://raw.githubusercontent.com/siddacool/jel/master/jel.png" data-canonical-src="https://raw.githubusercontent.com/siddacool/jel/master/jel.png" width="200" height="200" alt="jel"/>
 
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Run your unit tests
-```
-yarn test:unit
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Use phone/computer screen as RBG Light Panels
