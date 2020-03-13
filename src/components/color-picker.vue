@@ -7,7 +7,7 @@
     <icon-btn
       :action="hideColorPicker"
       color="danger"
-      class="color-picker-close"
+      class="color-picker_close"
       svgSize="xsmall"
       size="xsmall"
       noGlass
@@ -22,20 +22,31 @@
           d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/>
       </svg>
     </icon-btn>
-    <span class="hex-val">{{ backdropFresh }}</span>
-    <div class="color-picker-ui-enclosure">
+    <span class="color-picker_hex-val">{{ backdropFresh }}</span>
+    <div class="color-picker_ui-enclosure">
       <chrome-picker
         :value="backdrop"
         @input="updateValue"
-        class="color-picker-ui"
+        class="color-picker_ui"
       />
     </div>
+    <ul class="color-picker_swatches">
+      <li
+        v-for="(swatch, index) in swatches"
+        :key="index"
+        :class="swatch.selected ? 'selected' : null"
+        @click="activeSwatch(index)"
+      >
+        <backdrop :color="swatch.color" />
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 import { Chrome } from 'vue-color';
 import IconButton from './icon-button';
+import backdrop from './backdrop.vue';
 import { getWindowDimention } from '../utils';
 
 export default {
@@ -49,7 +60,8 @@ export default {
   },
   components: {
     'chrome-picker': Chrome,
-    'icon-btn': IconButton
+    'icon-btn': IconButton,
+    backdrop,
   },
   computed: {
     position() {
@@ -58,7 +70,7 @@ export default {
 
       let { x, y } = this.$store.state.cursorPoistion;
       const colorPickerWidth = 256;
-      const colorPickerHeight = 213;
+      const colorPickerHeight = 254;
 
       const fencing = {
         left: 32,
@@ -76,6 +88,14 @@ export default {
         x,
         y
       };
+    },
+    swatches() {
+      return this.$store.state.swatches;
+    }
+  },
+  methods: {
+    activeSwatch(index) {
+      this.$store.dispatch('activateSwatch', index);
     }
   }
 };
@@ -88,7 +108,7 @@ export default {
   --slick-colorpicker-fencing-verticle: 0.8rem;
   --slick-colorpicker-fencing-horizontal: 0.5rem;
   --slick-colorpicker-width: 256px;
-  --slick-colorpicker-height: 213px;
+  --slick-colorpicker-height: 254px;
 }
 
 /* full width */
@@ -143,16 +163,16 @@ export default {
   border-radius: var(--round-card);
 }
 
-.color-picker-ui {
+.color-picker_ui {
   box-shadow: none;
   width: 100%;
 }
 
-.color-picker-ui-enclosure {
+.color-picker_ui-enclosure {
   padding-top: 2rem;
 }
 
-.color-picker-close {
+.color-picker_close {
   position: absolute;
   right: var(--fencing-horizontal);
   top: 10px;
@@ -166,11 +186,36 @@ export default {
   display: none;
 }
 
-.hex-val {
+.color-picker_hex-val {
   position: absolute;
   left: var(--fencing-horizontal);
   top: 19px;
   font-weight: 500;
+}
+
+.color-picker_swatches {
+  padding-top: 2rem;
+  display: flex;
+  margin: 0;
+  justify-content: space-around;
+}
+
+.color-picker_swatches li {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ececec;
+  border-radius: 4px;
+}
+
+.color-picker_swatches li.selected {
+  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12);
+  border: none;
+  transform: scale(1.2, 1.2);
+}
+
+.color-picker_swatches li div {
+  border-radius: inherit;
 }
 
 @media only screen and (min-width: 1025px),
@@ -188,7 +233,7 @@ export default {
     border-radius: var(--round-desktop-card);
   }
 
-  .color-picker-ui-enclosure {
+  .color-picker_ui-enclosure {
     padding-top: 2rem;
   }
 
@@ -206,12 +251,12 @@ export default {
     left: var(--slick-colorpicker-fencing-horizontal);
   }
 
-  .hex-val {
+  .color-picker_hex-val {
     left: var(--slick-colorpicker-fencing-horizontal);
     font-size: 14px;
   }
 
-  .color-picker-close {
+  .color-picker_close {
     right: var(--slick-colorpicker-fencing-horizontal);
   }
 
@@ -222,6 +267,20 @@ export default {
 
   #app .vc-chrome-hue-wrap .vc-hue-picker {
     height: 12px;
+  }
+
+  .color-picker_swatches {
+    padding-top: 1rem;
+    justify-content: space-between;
+  }
+
+  .color-picker_swatches li {
+    width: 25px;
+    height: 25px;
+  }
+
+  .color-picker_swatches li.selected {
+    transform: scale(1.2, 1.2);
   }
 }
 </style>
