@@ -70,7 +70,7 @@ export default {
 
       let { x, y } = this.$store.state.cursorPoistion;
       const colorPickerWidth = 256;
-      const colorPickerHeight = 259;
+      const colorPickerHeight = 254;
 
       const fencing = {
         left: 32,
@@ -108,7 +108,7 @@ export default {
   --slick-colorpicker-fencing-verticle: 0.8rem;
   --slick-colorpicker-fencing-horizontal: 0.5rem;
   --slick-colorpicker-width: 256px;
-  --slick-colorpicker-height: 259px;
+  --slick-colorpicker-height: 254px;
 }
 
 /* full width */
@@ -204,20 +204,18 @@ export default {
   display: block;
   width: 40px;
   height: 40px;
-  border: 1px solid #000;
+  border: 1px solid #ececec;
   border-radius: 4px;
 }
 
 .color-picker_swatches li.selected {
-  border: 3px solid #000;
+  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12);
+  border: none;
+  transform: scale(1.2, 1.2);
 }
 
 .color-picker_swatches li div {
   border-radius: inherit;
-}
-
-.color-picker_swatches li.selected div {
-  border-radius: 0;
 }
 
 @media only screen and (min-width: 1025px),
@@ -273,11 +271,16 @@ export default {
 
   .color-picker_swatches {
     padding-top: 1rem;
+    justify-content: space-between;
   }
 
   .color-picker_swatches li {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .color-picker_swatches li.selected {
+    transform: scale(1.2, 1.2);
   }
 }
 </style>
