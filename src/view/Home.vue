@@ -3,7 +3,7 @@
     <Surface />
     <color-picker
       :backdrop="backdrop"
-      :backdropFresh="backdropFresh"
+      :backdropFresh="backdrop"
       :show="isColorPickerVisible"
       :updateValue="updateValue"
       :hideColorPicker="hideColorPicker"
@@ -19,11 +19,6 @@ import Launcher from '../components/Launcher.vue';
 
 export default {
   name: 'Home',
-  data() {
-    return {
-      backdrop: this.$store.state.backdrop
-    };
-  },
   components: {
     Surface,
     'color-picker': colorPicker,
@@ -35,14 +30,14 @@ export default {
       // `this` points to the vm instance
       return this.$store.state.isColorPickerVisible;
     },
-    backdropFresh() {
+    backdrop() {
       // `this` points to the vm instance
-      return this.$store.state.backdrop;
+      return this.$store.getters.backdrop;
     }
   },
   methods: {
     updateValue(e) {
-      this.$store.dispatch('changeBackDrop', e);
+      this.$store.dispatch('changeActiveSwatchColor', e);
     },
     hideColorPicker() {
       this.$store.dispatch('hideColorPicker');

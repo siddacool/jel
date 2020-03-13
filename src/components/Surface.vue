@@ -30,7 +30,7 @@ export default {
     // a computed getter
     backdrop() {
       // `this` points to the vm instance
-      return this.$store.state.backdrop;
+      return this.$store.getters.backdrop;
     },
     isColorPickerVisible() {
       // `this` points to the vm instance
