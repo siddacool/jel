@@ -8,19 +8,19 @@ const swatches = [
     selected: true
   },
   {
-    color: '#9C27B0'
+    color: '#16E7BE'
   },
   {
-    color: '#8BC34A'
+    color: '#F32109'
   },
   {
-    color: '#2196F3'
+    color: '#009AFF'
   },
   {
-    color: '#FFC107'
+    color: '#B600FF'
   },
   {
-    color: '#00BCD4'
+    color: '#FFC312'
   }
 ];
 
