@@ -70,7 +70,7 @@ export default {
 
       let { x, y } = this.$store.state.cursorPoistion;
       const colorPickerWidth = 256;
-      const colorPickerHeight = 213;
+      const colorPickerHeight = 259;
 
       const fencing = {
         left: 32,
@@ -108,7 +108,7 @@ export default {
   --slick-colorpicker-fencing-verticle: 0.8rem;
   --slick-colorpicker-fencing-horizontal: 0.5rem;
   --slick-colorpicker-width: 256px;
-  --slick-colorpicker-height: 213px;
+  --slick-colorpicker-height: 259px;
 }
 
 /* full width */
@@ -269,6 +269,15 @@ export default {
 
   #app .vc-chrome-hue-wrap .vc-hue-picker {
     height: 12px;
+  }
+
+  .color-picker_swatches {
+    padding-top: 1rem;
+  }
+
+  .color-picker_swatches li {
+    width: 30px;
+    height: 30px;
   }
 }
 </style>
