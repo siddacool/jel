@@ -9,7 +9,7 @@
       v-shortkey="['alt', 'p']"
       @shortkey="toggleColorPicker()"
     >
-      <section :style="{ background: backdrop }"></section>
+      <backdrop :color="backdrop" />
     </div>
     <ContextMenu ref="menu" />
   </div>
@@ -17,12 +17,14 @@
 
 <script>
 import ContextMenu from './ContextMenu.vue';
+import backdrop from './backdrop.vue';
 import { getMousePoisotion, getWindowDimention } from '../utils';
 
 export default {
   name: 'surface',
   components: {
-    ContextMenu
+    ContextMenu,
+    backdrop
   },
   computed: {
     // a computed getter
