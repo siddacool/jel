@@ -238,6 +238,11 @@ export default {
   background-color: var(--dark-bg-hover-color);
 }
 
+.vue-context-holder.dark .v-context > li > .group:hover .context_swatches li:not(.selected),
+.vue-context-holder.dark .v-context ul > li > .group:hover .context_swatches li:not(.selected) {
+  border-color: var(--dark-bg-color);
+}
+
 .vue-context-holder.dark .context_swatches li:not(.selected) {
   border-color: var(--dark-bg-hover-color);
 }
