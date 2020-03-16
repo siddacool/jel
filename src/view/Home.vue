@@ -35,6 +35,7 @@ export default {
       // `this` points to the vm instance
       return this.$store.getters.backdrop;
     },
+    // Dark theme check
     isDarkThemeActive() {
       return this.$store.state.darkTheme;
     }
