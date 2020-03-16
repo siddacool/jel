@@ -1,14 +1,15 @@
 <template>
   <div class="home-landing">
-    <Surface />
+    <Surface :darkTheme="isDarkThemeActive" />
     <color-picker
       :backdrop="backdrop"
       :backdropFresh="backdrop"
       :show="isColorPickerVisible"
       :updateValue="updateValue"
       :hideColorPicker="hideColorPicker"
+      :darkTheme="isDarkThemeActive"
     />
-    <Launcher :darkTheme="isDarkThemeActive"/>
+    <Launcher :darkTheme="isDarkThemeActive" />
   </div>
 </template>
 

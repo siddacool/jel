@@ -9,7 +9,7 @@
     >
       <backdrop :color="backdrop" />
     </div>
-    <ContextMenu ref="menu" />
+    <ContextMenu ref="menu" :darkTheme="darkTheme" />
   </div>
 </template>
 
@@ -19,6 +19,9 @@ import { getMousePoisotion, getWindowDimention } from '../utils';
 
 export default {
   name: 'surface',
+  props: {
+    darkTheme: Boolean
+  },
   components: {
     ContextMenu
   },

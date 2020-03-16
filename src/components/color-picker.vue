@@ -1,13 +1,13 @@
 <template>
   <div
     class="color-picker"
-    :class="isDarkThemeActive ? 'dark' : null"
+    :class="darkTheme ? 'dark' : null"
     v-show="show"
     :style="position ? `top:${position.y}px; left:${position.x}px` : null"
   >
    <icon-btn
       :action="toggleDarkTheme"
-      :darkTheme="isDarkThemeActive"
+      :darkTheme="darkTheme"
       class="color-picker_dark-mode-toggle"
       svgSize="small"
       size="xsmall"
@@ -26,7 +26,7 @@
     </icon-btn>
     <icon-btn
       :action="hideColorPicker"
-      :darkTheme="isDarkThemeActive"
+      :darkTheme="darkTheme"
       color="danger"
       class="color-picker_close"
       svgSize="xsmall"
@@ -76,7 +76,8 @@ export default {
     show: Boolean,
     backdropFresh: String,
     updateValue: Function,
-    hideColorPicker: Function
+    hideColorPicker: Function,
+    darkTheme: Boolean
   },
   components: {
     'chrome-picker': Chrome
@@ -109,9 +110,6 @@ export default {
     },
     swatches() {
       return this.$store.state.swatches;
-    },
-    isDarkThemeActive() {
-      return this.$store.state.darkTheme;
     }
   },
   methods: {

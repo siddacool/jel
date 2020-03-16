@@ -1,7 +1,7 @@
 <template>
   <div
     class="vue-context-holder"
-    :class="isDarkThemeActive ? 'dark' : null"
+    :class="darkTheme ? 'dark' : null"
     v-show="!isColorPickerVisible"
   >
     <vue-context :close-on-click="false">
@@ -13,7 +13,7 @@
       </li>
       <li>
         <a href="#" @click.prevent="toggleDarkTheme">
-          <checkmark :isChecked="isDarkThemeActive" />
+          <checkmark :isChecked="darkTheme" />
           Dark Theme
           <span class="shortcut">alt + n</span>
         </a>
@@ -69,6 +69,9 @@ import contextCheckmark from './context-checkmark';
 
 export default {
   name: 'ContextMenu',
+  props: {
+    darkTheme: Boolean
+  },
   components: {
     'vue-context': VueContext,
     checkmark: contextCheckmark
@@ -79,9 +82,6 @@ export default {
     },
     isColorPickerVisible() {
       return this.$store.state.isColorPickerVisible;
-    },
-    isDarkThemeActive() {
-      return this.$store.state.darkTheme;
     }
   },
   methods: {
