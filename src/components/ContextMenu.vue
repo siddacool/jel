@@ -12,6 +12,12 @@
         </a>
       </li>
       <li>
+        <a href="#" @click.prevent="toggleDarkTheme">
+          Dark Theme
+          <span class="shortcut">alt + n</span>
+        </a>
+      </li>
+      <li>
         <div class="group">
           <p>
             Swatches
@@ -58,6 +64,9 @@ export default {
     },
     activeSwatch(index) {
       this.$store.dispatch('activateSwatch', index);
+    },
+    toggleDarkTheme() {
+      this.$store.dispatch('toggleDarkTheme');
     }
   }
 };
@@ -122,6 +131,11 @@ export default {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+}
+
+.v-context > li > a:focus,
+.v-context ul > li > a:focus {
+  background-color: inherit;
 }
 
 .shortcut {

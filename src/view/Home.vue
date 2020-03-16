@@ -42,13 +42,10 @@ export default {
     hideColorPicker() {
       this.$store.dispatch('hideColorPicker');
     },
-    toggleColorPicker() {
-      this.$store.dispatch('toggleColorPicker');
-    },
     keyDetect(e) {
       // Toggle Color Picker
       if (e.altKey && e.key === 'p') {
-        this.toggleColorPicker();
+        this.$store.dispatch('toggleColorPicker');
       }
 
       // Next swatch
@@ -59,6 +56,11 @@ export default {
       // prev swatch
       if (e.key === 'ArrowLeft') {
         this.$store.dispatch('activatePrevSwatch');
+      }
+
+      // prev swatch
+      if (e.altKey && e.key === 'n') {
+        this.$store.dispatch('toggleDarkTheme');
       }
     }
   },
