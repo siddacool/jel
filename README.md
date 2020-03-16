@@ -12,3 +12,7 @@ Make sure **keyboard lock is not checked 🔓** on context Menu (Right Click)
 * Colorpicker Toggle  - `alt + p`
 * Dark Theme Toggle - `alt + n`
 * Change color swatches - `Left Arrow (Prev) / Right Arrow (Next)`
+
+
+Visit App:
+https://siddacool.github.io/jel/
