@@ -161,9 +161,11 @@ export default {
   justify-content: space-between;
 }
 
-.v-context > li > a:focus,
-.v-context ul > li > a:focus {
-  background-color: inherit;
+.v-context > li > a:hover,
+.v-context ul > li > a:hover,
+.v-context > li > .group:hover,
+.v-context ul > li > .group:hover {
+  background-color: #f7f7f7;
 }
 
 .shortcut {
@@ -230,7 +232,9 @@ export default {
 .vue-context-holder.dark .v-context > li > a:focus,
 .vue-context-holder.dark .v-context > li > a:hover,
 .vue-context-holder.dark .v-context ul > li >a:focus,
-.vue-context-holder.dark .v-context ul > li >a:hover {
+.vue-context-holder.dark .v-context ul > li >a:hover,
+.vue-context-holder.dark .v-context > li > .group:hover,
+.vue-context-holder.dark .v-context ul > li > .group:hover {
   background-color: var(--dark-bg-hover-color);
 }
 
