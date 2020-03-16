@@ -1,6 +1,7 @@
 <template>
   <div
     class="color-picker"
+    :class="isDarkThemeActive ? 'dark' : null"
     v-show="show"
     :style="position ? `top:${position.y}px; left:${position.x}px` : null"
   >
@@ -87,6 +88,9 @@ export default {
     },
     swatches() {
       return this.$store.state.swatches;
+    },
+    isDarkThemeActive() {
+      return this.$store.state.darkTheme;
     }
   },
   methods: {
@@ -204,6 +208,28 @@ export default {
 
 .color-picker_swatches li div {
   border-radius: inherit;
+}
+
+/* dark theme */
+
+.color-picker.dark {
+  background-color: var(--dark-bg-color);
+}
+
+.color-picker.dark .color-picker_hex-val {
+  color: var(--dark-color);
+}
+
+.color-picker.dark .vc-chrome-body {
+  background-color: var(--dark-bg-color);
+}
+
+.color-picker.dark .vc-hue-picker {
+  background-color: var(--dark-color);
+}
+
+.color-picker.dark .color-picker_swatches li:not(.selected) {
+  border-color: var(--dark-bg-hover-color);
 }
 
 @media only screen and (min-width: 1025px),
