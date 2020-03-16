@@ -50,6 +50,16 @@ export default {
       if (e.altKey && e.key === 'p') {
         this.toggleColorPicker();
       }
+
+      // Next swatch
+      if (e.key === 'ArrowRight') {
+        this.$store.dispatch('activateNextSwatch');
+      }
+
+      // prev swatch
+      if (e.key === 'ArrowLeft') {
+        this.$store.dispatch('activatePrevSwatch');
+      }
     }
   },
   created() {
