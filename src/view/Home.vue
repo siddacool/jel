@@ -1,14 +1,15 @@
 <template>
   <div class="home-landing">
-    <Surface />
+    <Surface :darkTheme="isDarkThemeActive" />
     <color-picker
       :backdrop="backdrop"
       :backdropFresh="backdrop"
       :show="isColorPickerVisible"
       :updateValue="updateValue"
       :hideColorPicker="hideColorPicker"
+      :darkTheme="isDarkThemeActive"
     />
-    <Launcher />
+    <Launcher :darkTheme="isDarkThemeActive" />
   </div>
 </template>
 
@@ -33,6 +34,13 @@ export default {
     backdrop() {
       // `this` points to the vm instance
       return this.$store.getters.backdrop;
+    },
+    // Dark theme check
+    isDarkThemeActive() {
+      return this.$store.state.darkTheme;
+    },
+    isKeyboardLocked() {
+      return this.$store.state.isKeyboardLocked;
     }
   },
   methods: {
@@ -41,7 +49,35 @@ export default {
     },
     hideColorPicker() {
       this.$store.dispatch('hideColorPicker');
+    },
+    keyDetect(e) {
+      if (this.isKeyboardLocked) return;
+      // Toggle Color Picker
+      if (e.altKey && e.key === 'p') {
+        this.$store.dispatch('toggleColorPicker');
+      }
+
+      // Next swatch
+      if (e.key === 'ArrowRight') {
+        this.$store.dispatch('activateNextSwatch');
+      }
+
+      // prev swatch
+      if (e.key === 'ArrowLeft') {
+        this.$store.dispatch('activatePrevSwatch');
+      }
+
+      // prev swatch
+      if (e.altKey && e.key === 'n') {
+        this.$store.dispatch('toggleDarkTheme');
+      }
     }
+  },
+  created() {
+    window.addEventListener('keydown', this.keyDetect);
+  },
+  destroyed() {
+    window.removeEventListener('keydown');
   }
 };
 </script>

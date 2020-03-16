@@ -1,11 +1,32 @@
 <template>
   <div
     class="color-picker"
+    :class="darkTheme ? 'dark' : null"
     v-show="show"
     :style="position ? `top:${position.y}px; left:${position.x}px` : null"
   >
+   <icon-btn
+      :action="toggleDarkTheme"
+      :darkTheme="darkTheme"
+      class="color-picker_dark-mode-toggle"
+      svgSize="small"
+      size="xsmall"
+      noGlass
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10v-20zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12z"
+        />
+      </svg>
+    </icon-btn>
     <icon-btn
       :action="hideColorPicker"
+      :darkTheme="darkTheme"
       color="danger"
       class="color-picker_close"
       svgSize="xsmall"
@@ -19,7 +40,8 @@
         viewBox="0 0 24 24"
       >
         <path
-          d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/>
+          d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"
+        />
       </svg>
     </icon-btn>
     <span class="color-picker_hex-val">{{ backdropFresh }}</span>
@@ -45,8 +67,6 @@
 
 <script>
 import { Chrome } from 'vue-color';
-import IconButton from './icon-button';
-import backdrop from './backdrop.vue';
 import { getWindowDimention } from '../utils';
 
 export default {
@@ -56,12 +76,11 @@ export default {
     show: Boolean,
     backdropFresh: String,
     updateValue: Function,
-    hideColorPicker: Function
+    hideColorPicker: Function,
+    darkTheme: Boolean
   },
   components: {
-    'chrome-picker': Chrome,
-    'icon-btn': IconButton,
-    backdrop,
+    'chrome-picker': Chrome
   },
   computed: {
     position() {
@@ -70,7 +89,7 @@ export default {
 
       let { x, y } = this.$store.state.cursorPoistion;
       const colorPickerWidth = 256;
-      const colorPickerHeight = 254;
+      const colorPickerHeight = 265;
 
       const fencing = {
         left: 32,
@@ -96,6 +115,9 @@ export default {
   methods: {
     activeSwatch(index) {
       this.$store.dispatch('activateSwatch', index);
+    },
+    toggleDarkTheme() {
+      this.$store.dispatch('toggleDarkTheme');
     }
   }
 };
@@ -103,14 +125,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-:root {
-  /* Slick Colorpicker */
-  --slick-colorpicker-fencing-verticle: 0.8rem;
-  --slick-colorpicker-fencing-horizontal: 0.5rem;
-  --slick-colorpicker-width: 256px;
-  --slick-colorpicker-height: 254px;
-}
-
 /* full width */
 #app .vc-chrome {
   box-shadow: none;
@@ -156,10 +170,10 @@ export default {
   width: 100vw;
   box-shadow: 0 0 2px rgba(0,0,0,.3),0 4px 8px rgba(0,0,0,.3);
   background-color: #fff;
-  padding-left: var(--fencing-horizontal);
-  padding-right: var(--fencing-horizontal);
+  padding-left: 0;
+  padding-right: 0;
   padding-top: var(--fencing-verticle);
-  padding-bottom: 3.6rem;
+  padding-bottom: 0;
   border-radius: var(--round-card);
 }
 
@@ -170,6 +184,8 @@ export default {
 
 .color-picker_ui-enclosure {
   padding-top: 2rem;
+  padding-left: var(--fencing-horizontal);
+  padding-right: var(--fencing-horizontal);
 }
 
 .color-picker_close {
@@ -194,9 +210,15 @@ export default {
 }
 
 .color-picker_swatches {
+  background-color: #f7f7f7;
+  border-radius: var(--round-desktop-card);
   padding-top: 2rem;
+  padding-left: var(--fencing-horizontal);
+  padding-right: var(--fencing-horizontal);
+  padding-bottom: 3.6rem;
   display: flex;
   margin: 0;
+  margin-top: 1.2rem;
   justify-content: space-around;
 }
 
@@ -218,15 +240,51 @@ export default {
   border-radius: inherit;
 }
 
+.color-picker_dark-mode-toggle {
+  position: absolute;
+  top: 10px;
+  left: 30%;
+}
+
+/* dark theme */
+
+.color-picker.dark {
+  background-color: var(--dark-bg-color);
+}
+
+.color-picker.dark .color-picker_hex-val {
+  color: var(--dark-color);
+}
+
+.color-picker.dark .vc-chrome-body {
+  background-color: var(--dark-bg-color);
+}
+
+.color-picker.dark .vc-hue-picker {
+  background-color: var(--dark-color);
+}
+
+.color-picker.dark .color-picker_swatches {
+  background-color: var(--dark-bg-hover-color);
+}
+
+.color-picker.dark .color-picker_swatches li:not(.selected) {
+  border-color: var(--dark-bg-hover-color);
+}
+
+.color-picker.dark .vc-saturation--black {
+  border: 1px solid #5d5d5d;
+}
+
 @media only screen and (min-width: 1025px),
   screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   .color-picker {
     top: calc(30% - (var(--color-picker-width) / 2));
     left: calc(50% - (var(--color-picker-width) / 2));
-    padding-left: var(--slick-colorpicker-fencing-horizontal);
-    padding-right: var(--slick-colorpicker-fencing-horizontal);
+    padding-left: 0;
+    padding-right: 0;
     padding-top: var(--slick-colorpicker-fencing-verticle);
-    padding-bottom: var(--slick-colorpicker-fencing-verticle);
+    padding-bottom: 0;
     bottom: initial;
     width: var(--slick-colorpicker-width);
     height: var(--slick-colorpicker-height);
@@ -235,8 +293,9 @@ export default {
 
   .color-picker_ui-enclosure {
     padding-top: 2rem;
+    padding-left: var(--slick-colorpicker-fencing-horizontal);
+    padding-right: var(--slick-colorpicker-fencing-horizontal);
   }
-
 
   #app .vc-chrome-body {
     padding-top: var(--slick-colorpicker-fencing-verticle);
@@ -272,15 +331,23 @@ export default {
   .color-picker_swatches {
     padding-top: 1rem;
     justify-content: space-between;
+    padding-left: var(--slick-colorpicker-fencing-horizontal);
+    padding-right: var(--slick-colorpicker-fencing-horizontal);
+    padding-bottom: var(--slick-colorpicker-fencing-verticle);
+    margin-top: var(--slick-colorpicker-fencing-verticle);
   }
 
   .color-picker_swatches li {
-    width: 25px;
-    height: 25px;
+    width: 23px;
+    height: 23px;
   }
 
   .color-picker_swatches li.selected {
-    transform: scale(1.2, 1.2);
+    transform: scale(1.1, 1.1);
+  }
+
+  .color-picker .btn.color-picker_dark-mode-toggle {
+    display: none;
   }
 }
 </style>

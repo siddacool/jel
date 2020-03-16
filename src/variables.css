@@ -17,4 +17,16 @@
 
   /* Color Picker */
   --color-picker-width: 256px;
+
+  /* Slick Colorpicker */
+  --slick-colorpicker-fencing-verticle: 0.8rem;
+  --slick-colorpicker-fencing-horizontal: 0.5rem;
+  --slick-colorpicker-width: 256px;
+  --slick-colorpicker-height: 264.19px;
+
+  /* Dark Theme */
+  --dark-bg-color: #1b1b1b;
+  --dark-bg-hover-color: #2d2d2d;
+  --dark-color: #c8d6b7;
+  --dark-color-ui-danger: #943029;
 }

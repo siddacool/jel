@@ -31,7 +31,9 @@ const vuexPersist = new VuexPersist({
   storage: localStorage,
   reducer: state => ({
     isColorPickerVisible: state.isColorPickerVisible,
-    swatches: state.swatches
+    swatches: state.swatches,
+    darkTheme: state.darkTheme,
+    isKeyboardLocked: state.isKeyboardLocked
   })
 });
 
@@ -42,7 +44,9 @@ export default new Vuex.Store({
       x: 32,
       y: 32
     },
-    swatches
+    swatches,
+    darkTheme: false,
+    isKeyboardLocked: false
   },
   getters: {
     backdrop: state => {
@@ -72,6 +76,43 @@ export default new Vuex.Store({
       );
 
       state.swatches = newSwatches;
+    },
+    setNextSwatch(state) {
+      const activeSwatchIndex = state.swatches.findIndex(swatch => swatch.selected);
+      const nextSwatchIndex = activeSwatchIndex + 1;
+
+      if (!state.swatches[nextSwatchIndex]) return;
+
+      const newSwatches = state.swatches.map((swatch, swatchIndex) =>
+        swatchIndex === nextSwatchIndex
+          ? { ...swatch, selected: true }
+          : { ...swatch, selected: false }
+      );
+
+      state.swatches = newSwatches;
+    },
+    setPrevSwatch(state) {
+      const activeSwatchIndex = state.swatches.findIndex(swatch => swatch.selected);
+      const nextSwatchIndex = activeSwatchIndex - 1;
+
+      if (!state.swatches[nextSwatchIndex]) return;
+
+      const newSwatches = state.swatches.map((swatch, swatchIndex) =>
+        swatchIndex === nextSwatchIndex
+          ? { ...swatch, selected: true }
+          : { ...swatch, selected: false }
+      );
+
+      state.swatches = newSwatches;
+    },
+    toggleDarkTheme(state) {
+      state.darkTheme = !state.darkTheme;
+    },
+    seteDarkTheme(state, status) {
+      state.darkTheme = status;
+    },
+    toggleKeyboardLock(state) {
+      state.isKeyboardLocked = !state.isKeyboardLocked;
     }
   },
   actions: {
@@ -100,6 +141,24 @@ export default new Vuex.Store({
     },
     activateSwatch(context, index) {
       context.commit('setActiveSwatch', index);
+    },
+    activateNextSwatch(context) {
+      context.commit('setNextSwatch');
+    },
+    activatePrevSwatch(context) {
+      context.commit('setPrevSwatch');
+    },
+    activeDarkTheme(context) {
+      context.commit('seteDarkTheme', true);
+    },
+    removeDarkTheme(context) {
+      context.commit('seteDarkTheme', false);
+    },
+    toggleDarkTheme(context) {
+      context.commit('toggleDarkTheme');
+    },
+    toggleKeyboardLock(context) {
+      context.commit('toggleKeyboardLock');
     }
   },
   plugins: [vuexPersist.plugin]
