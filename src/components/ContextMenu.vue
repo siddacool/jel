@@ -76,7 +76,10 @@ export default {
 .v-context > li > a,
 .v-context ul> li >a {
   font-weight: 500;
-  padding: 0.9rem 1rem;
+  padding-left: var(--slick-colorpicker-fencing-horizontal);
+  padding-right: var(--slick-colorpicker-fencing-horizontal);
+  padding-top: var(--slick-colorpicker-fencing-verticle);
+  padding-bottom: var(--slick-colorpicker-fencing-verticle);
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -94,13 +97,16 @@ export default {
 
 .v-context > li > .group,
 .v-context ul > li > .group {
-  padding: 0.9rem 1rem;
+  padding-left: var(--slick-colorpicker-fencing-horizontal);
+  padding-right: var(--slick-colorpicker-fencing-horizontal);
+  padding-top: var(--slick-colorpicker-fencing-verticle);
+  padding-bottom: var(--slick-colorpicker-fencing-verticle);
   position: relative;
 }
 
 .v-context > li > .group > p,
 .v-context ul > li > .group > p {
-  font-size: 13px;
+  font-size: inherit;
   font-weight: 500;
   text-align: left;
   margin-bottom: 10px;
@@ -112,6 +118,7 @@ export default {
 
 .shortcut {
   font-weight: 600;
+  font-size: 12px;
 }
 
 .context_swatches {

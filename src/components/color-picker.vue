@@ -99,14 +99,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-:root {
-  /* Slick Colorpicker */
-  --slick-colorpicker-fencing-verticle: 0.8rem;
-  --slick-colorpicker-fencing-horizontal: 0.5rem;
-  --slick-colorpicker-width: 256px;
-  --slick-colorpicker-height: 254px;
-}
-
 /* full width */
 #app .vc-chrome {
   box-shadow: none;

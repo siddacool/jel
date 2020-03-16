@@ -17,4 +17,10 @@
 
   /* Color Picker */
   --color-picker-width: 256px;
+
+  /* Slick Colorpicker */
+  --slick-colorpicker-fencing-verticle: 0.8rem;
+  --slick-colorpicker-fencing-horizontal: 0.5rem;
+  --slick-colorpicker-width: 256px;
+  --slick-colorpicker-height: 254px;
 }
