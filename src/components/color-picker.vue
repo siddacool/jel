@@ -5,6 +5,25 @@
     v-show="show"
     :style="position ? `top:${position.y}px; left:${position.x}px` : null"
   >
+   <icon-btn
+      :action="toggleDarkTheme"
+      :darkTheme="isDarkThemeActive"
+      class="color-picker_dark-mode-toggle"
+      svgSize="small"
+      size="xsmall"
+      noGlass
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10v-20zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12z"
+        />
+      </svg>
+    </icon-btn>
     <icon-btn
       :action="hideColorPicker"
       :darkTheme="isDarkThemeActive"
@@ -21,7 +40,8 @@
         viewBox="0 0 24 24"
       >
         <path
-          d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/>
+          d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"
+        />
       </svg>
     </icon-btn>
     <span class="color-picker_hex-val">{{ backdropFresh }}</span>
@@ -97,6 +117,9 @@ export default {
   methods: {
     activeSwatch(index) {
       this.$store.dispatch('activateSwatch', index);
+    },
+    toggleDarkTheme() {
+      this.$store.dispatch('toggleDarkTheme');
     }
   }
 };
@@ -219,6 +242,12 @@ export default {
   border-radius: inherit;
 }
 
+.color-picker_dark-mode-toggle {
+  position: absolute;
+  top: 10px;
+  left: 30%;
+}
+
 /* dark theme */
 
 .color-picker.dark {
@@ -317,6 +346,10 @@ export default {
 
   .color-picker_swatches li.selected {
     transform: scale(1.1, 1.1);
+  }
+
+  .color-picker .btn.color-picker_dark-mode-toggle {
+    display: none;
   }
 }
 </style>
