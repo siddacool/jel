@@ -8,7 +8,10 @@
     </li>
     <li>
       <div class="group">
-        <p>Swatches</p>
+        <p>
+          Swatches
+          <span class="shortcut">left / right</span>
+        </p>
         <div class="context_swatches">
           <li
             v-for="(swatch, index) in swatches"
@@ -102,6 +105,9 @@ export default {
   text-align: left;
   margin-bottom: 10px;
   color: #212529;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
 }
 
 .shortcut {
