@@ -22,7 +22,30 @@
         <div class="group">
           <p>
             Swatches
-            <span class="shortcut">left / right</span>
+            <span class="shortcut">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                style="transform: rotateZ(180deg)"
+              >
+                <path
+                  d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
+                />
+              </svg>
+              /
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
+                />
+              </svg>
+            </span>
           </p>
           <div class="context_swatches">
             <li
@@ -48,7 +71,7 @@ export default {
   name: 'ContextMenu',
   components: {
     'vue-context': VueContext,
-    'checkmark': contextCheckmark
+    checkmark: contextCheckmark
   },
   computed: {
     swatches() {
@@ -106,8 +129,8 @@ export default {
   position: relative;
 }
 
-.v-context > li > a svg,
-.v-context ul> li >a svg {
+.v-context > li > a .checked,
+.v-context ul> li >a .checked {
   width: 14px;
   height: 14px;
   position: absolute;
@@ -145,6 +168,12 @@ export default {
 .shortcut {
   font-weight: 600;
   font-size: 12px;
+}
+
+.shortcut svg {
+  width: 10px;
+  height: 10px;
+  fill: #212529;
 }
 
 .context_swatches {
@@ -210,6 +239,10 @@ export default {
 
 .vue-context-holder.dark .v-context > li > a svg,
 .vue-context-holder.dark .v-context ul> li >a svg {
+  fill: var(--dark-color);
+}
+
+.vue-context-holder.dark .shortcut svg {
   fill: var(--dark-color);
 }
 </style>
