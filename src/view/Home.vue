@@ -38,6 +38,9 @@ export default {
     // Dark theme check
     isDarkThemeActive() {
       return this.$store.state.darkTheme;
+    },
+    isKeyboardLocked() {
+      return this.$store.state.isKeyboardLocked;
     }
   },
   methods: {
@@ -48,6 +51,7 @@ export default {
       this.$store.dispatch('hideColorPicker');
     },
     keyDetect(e) {
+      if (this.isKeyboardLocked) return;
       // Toggle Color Picker
       if (e.altKey && e.key === 'p') {
         this.$store.dispatch('toggleColorPicker');

@@ -59,6 +59,12 @@
           </div>
         </div>
       </li>
+      <li>
+        <a href="#" @click.prevent="toggleKeyboardLock">
+          <checkmark :isChecked="isKeyboardLocked" />
+          Keyboard Lock
+        </a>
+      </li>
     </vue-context>
   </div>
 </template>
@@ -82,6 +88,9 @@ export default {
     },
     isColorPickerVisible() {
       return this.$store.state.isColorPickerVisible;
+    },
+    isKeyboardLocked() {
+      return this.$store.state.isKeyboardLocked;
     }
   },
   methods: {
@@ -94,6 +103,10 @@ export default {
     toggleDarkTheme(e) {
       e.target.blur();
       this.$store.dispatch('toggleDarkTheme');
+    },
+    toggleKeyboardLock(e) {
+      e.target.blur();
+      this.$store.dispatch('toggleKeyboardLock');
     }
   }
 };

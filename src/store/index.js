@@ -32,7 +32,8 @@ const vuexPersist = new VuexPersist({
   reducer: state => ({
     isColorPickerVisible: state.isColorPickerVisible,
     swatches: state.swatches,
-    darkTheme: state.darkTheme
+    darkTheme: state.darkTheme,
+    isKeyboardLocked: state.isKeyboardLocked
   })
 });
 
@@ -44,7 +45,8 @@ export default new Vuex.Store({
       y: 32
     },
     swatches,
-    darkTheme: false
+    darkTheme: false,
+    isKeyboardLocked: false
   },
   getters: {
     backdrop: state => {
@@ -108,6 +110,9 @@ export default new Vuex.Store({
     },
     seteDarkTheme(state, status) {
       state.darkTheme = status;
+    },
+    toggleKeyboardLock(state) {
+      state.isKeyboardLocked = !state.isKeyboardLocked;
     }
   },
   actions: {
@@ -151,6 +156,9 @@ export default new Vuex.Store({
     },
     toggleDarkTheme(context) {
       context.commit('toggleDarkTheme');
+    },
+    toggleKeyboardLock(context) {
+      context.commit('toggleKeyboardLock');
     }
   },
   plugins: [vuexPersist.plugin]
