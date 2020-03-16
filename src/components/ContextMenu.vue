@@ -91,7 +91,8 @@ export default {
     activeSwatch(index) {
       this.$store.dispatch('activateSwatch', index);
     },
-    toggleDarkTheme() {
+    toggleDarkTheme(e) {
+      e.target.blur();
       this.$store.dispatch('toggleDarkTheme');
     }
   }
