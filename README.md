@@ -4,10 +4,10 @@ Use phone/computer screen as RBG Light Panels
 
 ---
 
-### Shortcuts
+### Shortcuts ⌨
 jel can be controlled with keyboard shortcuts on Desktop.
 
-Make sure **keyboard lock is not checked** on context Menu (Right Click)
+Make sure **keyboard lock is not checked 🔓** on context Menu (Right Click)
 
 * Colorpicker Toggle  - `alt + p`
 * Dark Theme Toggle - `alt + n`
