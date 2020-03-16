@@ -233,6 +233,10 @@ export default {
   border-color: var(--dark-bg-hover-color);
 }
 
+.color-picker.dark .vc-saturation--black {
+  border: 1px solid #5d5d5d;
+}
+
 @media only screen and (min-width: 1025px),
   screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   .color-picker {
@@ -251,7 +255,6 @@ export default {
   .color-picker_ui-enclosure {
     padding-top: 2rem;
   }
-
 
   #app .vc-chrome-body {
     padding-top: var(--slick-colorpicker-fencing-verticle);
