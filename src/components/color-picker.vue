@@ -263,12 +263,12 @@ export default {
   }
 
   .color-picker_swatches li {
-    width: 25px;
-    height: 25px;
+    width: 23px;
+    height: 23px;
   }
 
   .color-picker_swatches li.selected {
-    transform: scale(1.2, 1.2);
+    transform: scale(1.1, 1.1);
   }
 }
 </style>
