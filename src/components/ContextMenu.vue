@@ -13,6 +13,7 @@
       </li>
       <li>
         <a href="#" @click.prevent="toggleDarkTheme">
+          <checkmark :isChecked="isDarkThemeActive" />
           Dark Theme
           <span class="shortcut">alt + n</span>
         </a>
@@ -41,11 +42,13 @@
 
 <script>
 import { VueContext } from 'vue-context';
+import contextCheckmark from './context-checkmark';
 
 export default {
   name: 'ContextMenu',
   components: {
-    'vue-context': VueContext
+    'vue-context': VueContext,
+    'checkmark': contextCheckmark
   },
   computed: {
     swatches() {
@@ -91,9 +94,9 @@ export default {
 }
 
 .v-context > li > a,
-.v-context ul> li >a {
+.v-context ul> li > a {
   font-weight: 500;
-  padding-left: var(--slick-colorpicker-fencing-horizontal);
+  padding-left: 2.5rem;
   padding-right: var(--slick-colorpicker-fencing-horizontal);
   padding-top: var(--slick-colorpicker-fencing-verticle);
   padding-bottom: var(--slick-colorpicker-fencing-verticle);
@@ -105,16 +108,17 @@ export default {
 
 .v-context > li > a svg,
 .v-context ul> li >a svg {
-  width: 16px;
-  height: 16px;
-  margin-right: 1rem;
+  width: 14px;
+  height: 14px;
   position: absolute;
-  top: 2px;
+  top: 11px;
+  left: 12px;
+  fill: #212529;
 }
 
 .v-context > li > .group,
 .v-context ul > li > .group {
-  padding-left: var(--slick-colorpicker-fencing-horizontal);
+  padding-left: 2.5rem;
   padding-right: var(--slick-colorpicker-fencing-horizontal);
   padding-top: var(--slick-colorpicker-fencing-verticle);
   padding-bottom: var(--slick-colorpicker-fencing-verticle);
@@ -168,6 +172,18 @@ export default {
   border-radius: inherit;
 }
 
+/* active mark */
+.v-context > li > a.active::before,
+.v-context ul > li > a.active::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #23a8ff;
+  left: 8px;
+}
+
 /* dark theme */
 .vue-context-holder.dark .v-context,
 .vue-context-holder.dark .v-context ul {
@@ -190,5 +206,10 @@ export default {
 
 .vue-context-holder.dark .context_swatches li:not(.selected) {
   border-color: var(--dark-bg-hover-color);
+}
+
+.vue-context-holder.dark .v-context > li > a svg,
+.vue-context-holder.dark .v-context ul> li >a svg {
+  fill: var(--dark-color);
 }
 </style>
