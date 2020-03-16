@@ -68,7 +68,7 @@ export default {
 
       let { x, y } = this.$store.state.cursorPoistion;
       const colorPickerWidth = 256;
-      const colorPickerHeight = 254;
+      const colorPickerHeight = 265;
 
       const fencing = {
         left: 32,
@@ -149,10 +149,10 @@ export default {
   width: 100vw;
   box-shadow: 0 0 2px rgba(0,0,0,.3),0 4px 8px rgba(0,0,0,.3);
   background-color: #fff;
-  padding-left: var(--fencing-horizontal);
-  padding-right: var(--fencing-horizontal);
+  padding-left: 0;
+  padding-right: 0;
   padding-top: var(--fencing-verticle);
-  padding-bottom: 3.6rem;
+  padding-bottom: 0;
   border-radius: var(--round-card);
 }
 
@@ -163,6 +163,8 @@ export default {
 
 .color-picker_ui-enclosure {
   padding-top: 2rem;
+  padding-left: var(--fencing-horizontal);
+  padding-right: var(--fencing-horizontal);
 }
 
 .color-picker_close {
@@ -187,9 +189,15 @@ export default {
 }
 
 .color-picker_swatches {
+  background-color: #f7f7f7;
+  border-radius: var(--round-desktop-card);
   padding-top: 2rem;
+  padding-left: var(--fencing-horizontal);
+  padding-right: var(--fencing-horizontal);
+  padding-bottom: 3.6rem;
   display: flex;
   margin: 0;
+  margin-top: 1.2rem;
   justify-content: space-around;
 }
 
@@ -229,6 +237,10 @@ export default {
   background-color: var(--dark-color);
 }
 
+.color-picker.dark .color-picker_swatches {
+  background-color: var(--dark-bg-hover-color);
+}
+
 .color-picker.dark .color-picker_swatches li:not(.selected) {
   border-color: var(--dark-bg-hover-color);
 }
@@ -242,10 +254,10 @@ export default {
   .color-picker {
     top: calc(30% - (var(--color-picker-width) / 2));
     left: calc(50% - (var(--color-picker-width) / 2));
-    padding-left: var(--slick-colorpicker-fencing-horizontal);
-    padding-right: var(--slick-colorpicker-fencing-horizontal);
+    padding-left: 0;
+    padding-right: 0;
     padding-top: var(--slick-colorpicker-fencing-verticle);
-    padding-bottom: var(--slick-colorpicker-fencing-verticle);
+    padding-bottom: 0;
     bottom: initial;
     width: var(--slick-colorpicker-width);
     height: var(--slick-colorpicker-height);
@@ -254,6 +266,8 @@ export default {
 
   .color-picker_ui-enclosure {
     padding-top: 2rem;
+    padding-left: var(--slick-colorpicker-fencing-horizontal);
+    padding-right: var(--slick-colorpicker-fencing-horizontal);
   }
 
   #app .vc-chrome-body {
@@ -290,6 +304,10 @@ export default {
   .color-picker_swatches {
     padding-top: 1rem;
     justify-content: space-between;
+    padding-left: var(--slick-colorpicker-fencing-horizontal);
+    padding-right: var(--slick-colorpicker-fencing-horizontal);
+    padding-bottom: var(--slick-colorpicker-fencing-verticle);
+    margin-top: var(--slick-colorpicker-fencing-verticle);
   }
 
   .color-picker_swatches li {
