@@ -1,30 +1,36 @@
 <template>
-  <vue-context :close-on-click="false" v-show="!isColorPickerVisible">
-    <li>
-      <a href="#" @click.prevent="toggleColorPicker">
-        Color Picker
-        <span class="shortcut">alt + p</span>
-      </a>
-    </li>
-    <li>
-      <div class="group">
-        <p>
-          Swatches
-          <span class="shortcut">left / right</span>
-        </p>
-        <div class="context_swatches">
-          <li
-            v-for="(swatch, index) in swatches"
-            :key="index"
-            :class="swatch.selected ? 'selected' : null"
-            @click.prevent="activeSwatch(index)"
-          >
-            <backdrop :color="swatch.color" />
-          </li>
+  <div
+    class="vue-context-holder"
+    :class="isDarkThemeActive ? 'dark' : null"
+    v-show="!isColorPickerVisible"
+  >
+    <vue-context :close-on-click="false">
+      <li>
+        <a href="#" @click.prevent="toggleColorPicker">
+          Color Picker
+          <span class="shortcut">alt + p</span>
+        </a>
+      </li>
+      <li>
+        <div class="group">
+          <p>
+            Swatches
+            <span class="shortcut">left / right</span>
+          </p>
+          <div class="context_swatches">
+            <li
+              v-for="(swatch, index) in swatches"
+              :key="index"
+              :class="swatch.selected ? 'selected' : null"
+              @click.prevent="activeSwatch(index)"
+            >
+              <backdrop :color="swatch.color" />
+            </li>
+          </div>
         </div>
-      </div>
-    </li>
-  </vue-context>
+      </li>
+    </vue-context>
+  </div>
 </template>
 
 <script>
@@ -40,8 +46,10 @@ export default {
       return this.$store.state.swatches;
     },
     isColorPickerVisible() {
-      // `this` points to the vm instance
       return this.$store.state.isColorPickerVisible;
+    },
+    isDarkThemeActive() {
+      return this.$store.state.darkTheme;
     }
   },
   methods: {
@@ -144,5 +152,29 @@ export default {
 
 .context_swatches li div {
   border-radius: inherit;
+}
+
+/* dark theme */
+.vue-context-holder.dark .v-context,
+.vue-context-holder.dark .v-context ul {
+  background-color: var(--dark-bg-color);
+}
+
+.vue-context-holder.dark .v-context > li > a,
+.vue-context-holder.dark .v-context ul > li > a,
+.vue-context-holder.dark .v-context > li > .group > p,
+.vue-context-holder.dark .v-context ul > li > .group > p {
+  color: var(--dark-color);
+}
+
+.vue-context-holder.dark .v-context > li > a:focus,
+.vue-context-holder.dark .v-context > li > a:hover,
+.vue-context-holder.dark .v-context ul > li >a:focus,
+.vue-context-holder.dark .v-context ul > li >a:hover {
+  background-color: var(--dark-bg-hover-color);
+}
+
+.vue-context-holder.dark .context_swatches li:not(.selected) {
+  border-color: var(--dark-bg-hover-color);
 }
 </style>
