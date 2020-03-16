@@ -63,6 +63,19 @@
         <a href="#" @click.prevent="toggleKeyboardLock">
           <checkmark :isChecked="isKeyboardLocked" />
           Keyboard Lock
+          <span class="shortcut">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              style="width: 15px; height: 15px;"
+            >
+              <path
+                d="M21.658 3.786l-3.658 3.318v-1.104c0-3.313-2.687-6-6-6s-6 2.687-6 6v4h-3v10.707l-2 1.813 1.346 1.48 20.654-18.734-1.342-1.48zm-5.658 5.132l-1.194 1.082h-6.806v-4c0-2.205 1.795-4 4-4s4 1.795 4 4v2.918zm5 1.082v14h-16.391l15.422-14h.969z"
+              />
+            </svg>
+          </span>
         </a>
       </li>
     </vue-context>
@@ -148,7 +161,7 @@ export default {
   width: 14px;
   height: 14px;
   position: absolute;
-  top: 11px;
+  top: 13px;
   left: 12px;
   fill: #212529;
 }
