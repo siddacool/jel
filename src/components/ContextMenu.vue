@@ -26,13 +26,11 @@
 
 <script>
 import { VueContext } from 'vue-context';
-import backdrop from './backdrop.vue';
 
 export default {
   name: 'ContextMenu',
   components: {
-    'vue-context': VueContext,
-    backdrop
+    'vue-context': VueContext
   },
   computed: {
     swatches() {

@@ -46,7 +46,6 @@
 <script>
 import { Chrome } from 'vue-color';
 import IconButton from './icon-button';
-import backdrop from './backdrop.vue';
 import { getWindowDimention } from '../utils';
 
 export default {
@@ -60,8 +59,7 @@ export default {
   },
   components: {
     'chrome-picker': Chrome,
-    'icon-btn': IconButton,
-    backdrop,
+    'icon-btn': IconButton
   },
   computed: {
     position() {

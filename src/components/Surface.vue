@@ -17,14 +17,12 @@
 
 <script>
 import ContextMenu from './ContextMenu.vue';
-import backdrop from './backdrop.vue';
 import { getMousePoisotion, getWindowDimention } from '../utils';
 
 export default {
   name: 'surface',
   components: {
-    ContextMenu,
-    backdrop
+    ContextMenu
   },
   computed: {
     // a computed getter
