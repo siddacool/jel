@@ -69,7 +69,7 @@ export default {
 .v-context,
 .v-context ul {
   font-size: 13px;
-  min-width: 14rem;
+  min-width: 256px;
   padding: 0;
 }
 
