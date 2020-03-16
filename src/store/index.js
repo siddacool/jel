@@ -42,7 +42,8 @@ export default new Vuex.Store({
       x: 32,
       y: 32
     },
-    swatches
+    swatches,
+    darkTheme: false
   },
   getters: {
     backdrop: state => {
@@ -100,6 +101,12 @@ export default new Vuex.Store({
       );
 
       state.swatches = newSwatches;
+    },
+    toggleDarkTheme(state) {
+      state.darkTheme = !state.darkTheme;
+    },
+    seteDarkTheme(state, status) {
+      state.darkTheme = status;
     }
   },
   actions: {
@@ -134,6 +141,15 @@ export default new Vuex.Store({
     },
     activatePrevSwatch(context) {
       context.commit('setPrevSwatch');
+    },
+    activeDarkTheme(context) {
+      context.commit('seteDarkTheme', true);
+    },
+    removeDarkTheme(context) {
+      context.commit('seteDarkTheme', false);
+    },
+    toggleDarkTheme(context) {
+      context.commit('toggleDarkTheme');
     }
   },
   plugins: [vuexPersist.plugin]
