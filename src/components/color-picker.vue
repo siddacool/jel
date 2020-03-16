@@ -7,6 +7,7 @@
   >
     <icon-btn
       :action="hideColorPicker"
+      :darkTheme="isDarkThemeActive"
       color="danger"
       class="color-picker_close"
       svgSize="xsmall"
