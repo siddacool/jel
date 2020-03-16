@@ -8,7 +8,7 @@
       :updateValue="updateValue"
       :hideColorPicker="hideColorPicker"
     />
-    <Launcher />
+    <Launcher :darkTheme="isDarkThemeActive"/>
   </div>
 </template>
 
@@ -33,6 +33,9 @@ export default {
     backdrop() {
       // `this` points to the vm instance
       return this.$store.getters.backdrop;
+    },
+    isDarkThemeActive() {
+      return this.$store.state.darkTheme;
     }
   },
   methods: {
