@@ -23,4 +23,9 @@
   --slick-colorpicker-fencing-horizontal: 0.5rem;
   --slick-colorpicker-width: 256px;
   --slick-colorpicker-height: 254px;
+
+  /* Dark Theme */
+  --dark-bg-color: #464646;
+  --dark-bg-hover-color: #333333;
+  --dark-color: #c8d6b7;
 }
