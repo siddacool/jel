@@ -1,7 +1,7 @@
 <template>
   <button
     class="btn"
-    :class="[colorClass, sizeClass, svgSizeClass, noGlassClass]"
+    :class="[colorClass, sizeClass, svgSizeClass, noGlassClass, darkThemeClass]"
     @click="action"
   >
     <slot></slot>
@@ -31,7 +31,8 @@ export default {
     noGlass: {
       type: Boolean,
       default: false
-    }
+    },
+    darkTheme: Boolean
   },
   computed: {
     // a computed getter
@@ -46,6 +47,9 @@ export default {
     },
     noGlassClass() {
       return this.noGlass ? 'no-glass' : '';
+    },
+    darkThemeClass() {
+      return this.darkTheme ? 'dark' : '';
     }
   }
 };
@@ -169,5 +173,13 @@ export default {
 /* No Glass */
 .btn.no-glass {
   opacity: 1;
+}
+
+/* dark theme */
+.btn.dark.danger {
+  background-color: var(--dark-color-ui-danger);
+}
+.btn.dark.danger svg {
+  fill: var(--dark-color);
 }
 </style>
