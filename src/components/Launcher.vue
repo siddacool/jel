@@ -11,13 +11,8 @@
 </template>
 
 <script>
-import IconButton from './icon-button';
-
 export default {
   name: 'Launcher',
-  components: {
-    'icon-btn': IconButton
-  },
   computed: {
     // a computed getter
     isColorPickerVisible() {
