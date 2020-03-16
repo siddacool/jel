@@ -31,7 +31,8 @@ const vuexPersist = new VuexPersist({
   storage: localStorage,
   reducer: state => ({
     isColorPickerVisible: state.isColorPickerVisible,
-    swatches: state.swatches
+    swatches: state.swatches,
+    darkTheme: state.darkTheme
   })
 });
 
