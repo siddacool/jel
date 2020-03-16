@@ -8,7 +8,6 @@ import backdrop from './plugins/backdrop';
 import iconbtn from './plugins/icon-btn';
 
 Vue.config.productionTip = false;
-Vue.use(require('vue-shortkey'));
 Vue.use(backdrop);
 Vue.use(iconbtn);
 

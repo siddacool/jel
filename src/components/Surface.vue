@@ -6,8 +6,6 @@
       @mousemove.passive="e => mouseMove(e)"
       @click="e => handleLeftClick(e)"
       @contextmenu.prevent="(e, data) => handleRightClick(e, data)"
-      v-shortkey="['alt', 'p']"
-      @shortkey="toggleColorPicker()"
     >
       <backdrop :color="backdrop" />
     </div>
@@ -54,9 +52,6 @@ export default {
       if (width < 1025) return null;
       this.commonClickActions(e);
       this.$refs.menu.$children[0].open(e, data);
-    },
-    toggleColorPicker() {
-      this.$store.dispatch('toggleColorPicker');
     }
   }
 };

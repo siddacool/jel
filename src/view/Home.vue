@@ -41,7 +41,22 @@ export default {
     },
     hideColorPicker() {
       this.$store.dispatch('hideColorPicker');
+    },
+    toggleColorPicker() {
+      this.$store.dispatch('toggleColorPicker');
+    },
+    keyDetect(e) {
+      // Toggle Color Picker
+      if (e.altKey && e.key === 'p') {
+        this.toggleColorPicker();
+      }
     }
+  },
+  created() {
+    window.addEventListener('keydown', this.keyDetect);
+  },
+  destroyed() {
+    window.removeEventListener('keydown');
   }
 };
 </script>
