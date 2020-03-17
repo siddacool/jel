@@ -7,7 +7,7 @@
       :color="backdrop"
     >
       <template v-slot:header>About</template>
-      <img src="https://raw.githubusercontent.com/siddacool/jel/master/jel.png" data-canonical-src="https://raw.githubusercontent.com/siddacool/jel/master/jel.png" width="200" height="200" alt="jel"/>
+      <img src="../assets/logo.png" width="200" height="200" alt="jel" />
       <br />
       Need interesting lights for a photoshoot ?
       <br />
