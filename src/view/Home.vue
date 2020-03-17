@@ -1,6 +1,14 @@
 <template>
   <div class="home-landing">
     <Surface :darkTheme="isDarkThemeActive" />
+    <Launcher
+      :darkTheme="isDarkThemeActive"
+      :resetMousePosition="resetMousePositionDetect"
+    />
+    <MobileMenu
+      :darkTheme="isDarkThemeActive"
+      :isColorPickerVisible="isColorPickerVisible"
+    />
     <color-picker
       :backdrop="backdrop"
       :backdropFresh="backdrop"
@@ -10,10 +18,6 @@
       :darkTheme="isDarkThemeActive"
       :mousePos="mousePos"
     />
-    <Launcher
-      :darkTheme="isDarkThemeActive"
-      :resetMousePosition="resetMousePositionDetect"
-    />
   </div>
 </template>
 
@@ -21,6 +25,7 @@
 import Surface from '../components/Surface.vue';
 import colorPicker from '../components/color-picker.vue';
 import Launcher from '../components/Launcher.vue';
+import MobileMenu from '../components/MobileMenu.vue';
 import { getWindowDimention, getMousePoisotion } from '../utils';
 
 const debounced = (delay, fn) => {
@@ -41,7 +46,8 @@ export default {
   components: {
     Surface,
     'color-picker': colorPicker,
-    Launcher
+    Launcher,
+    MobileMenu
   },
   data() {
     return {
