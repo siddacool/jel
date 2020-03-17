@@ -1,6 +1,14 @@
 <template>
   <div class="home-landing">
     <Surface :darkTheme="isDarkThemeActive" />
+    <Launcher
+      :darkTheme="isDarkThemeActive"
+      :resetMousePosition="resetMousePositionDetect"
+    />
+    <MobileMenu
+      :darkTheme="isDarkThemeActive"
+      :isColorPickerVisible="isColorPickerVisible"
+    />
     <color-picker
       :backdrop="backdrop"
       :backdropFresh="backdrop"
@@ -8,8 +16,8 @@
       :updateValue="updateValue"
       :hideColorPicker="hideColorPicker"
       :darkTheme="isDarkThemeActive"
+      :mousePos="mousePos"
     />
-    <Launcher :darkTheme="isDarkThemeActive" />
   </div>
 </template>
 
@@ -17,13 +25,34 @@
 import Surface from '../components/Surface.vue';
 import colorPicker from '../components/color-picker.vue';
 import Launcher from '../components/Launcher.vue';
+import MobileMenu from '../components/MobileMenu.vue';
+import { getWindowDimention, getMousePoisotion } from '../utils';
+
+const debounced = (delay, fn) => {
+  let timerId;
+  return (...args) => {
+    if (timerId) {
+      clearTimeout(timerId);
+    }
+    timerId = setTimeout(() => {
+      fn(...args);
+      timerId = null;
+    }, delay);
+  };
+};
 
 export default {
   name: 'Home',
   components: {
     Surface,
     'color-picker': colorPicker,
-    Launcher
+    Launcher,
+    MobileMenu
+  },
+  data() {
+    return {
+      mousePos: {}
+    };
   },
   computed: {
     // a computed getter
@@ -71,13 +100,27 @@ export default {
       if (e.altKey && e.key === 'n') {
         this.$store.dispatch('toggleDarkTheme');
       }
+    },
+    mousePositionDetect(e) {
+      if (this.isColorPickerVisible || getWindowDimention().x < 1025) return;
+      this.mousePos = getMousePoisotion(e);
+    },
+    resetMousePositionDetect() {
+      if (this.isColorPickerVisible || getWindowDimention().x < 1025) return;
+      this.mousePos = {
+        x: 32,
+        y: 32
+      };
     }
   },
   created() {
+    const dmousePositionDetect = debounced(50, this.mousePositionDetect);
     window.addEventListener('keydown', this.keyDetect);
+    window.addEventListener('mousemove', dmousePositionDetect);
   },
   destroyed() {
     window.removeEventListener('keydown');
+    window.removeEventListener('mousemove');
   }
 };
 </script>

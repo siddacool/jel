@@ -40,10 +40,6 @@ const vuexPersist = new VuexPersist({
 export default new Vuex.Store({
   state: {
     isColorPickerVisible: true,
-    cursorPoistion: {
-      x: 32,
-      y: 32
-    },
     swatches,
     darkTheme: false,
     isKeyboardLocked: false
@@ -59,9 +55,6 @@ export default new Vuex.Store({
     },
     setColorPickerVisibility(state, visibility) {
       state.isColorPickerVisible = visibility;
-    },
-    setCursorPosition(state, pos) {
-      state.cursorPoistion = pos;
     },
     setActiveSwatchColor(state, color) {
       const index = state.swatches.findIndex(swatch => swatch.selected);
@@ -124,16 +117,6 @@ export default new Vuex.Store({
     },
     toggleColorPicker(context) {
       context.commit('toggleColorPickerVisibility');
-    },
-    changeCursorPosition(context, payload) {
-      if (!payload || !payload.x || !payload.y) return;
-      context.commit('setCursorPosition', payload);
-    },
-    resetCursorPosition(context) {
-      context.commit('setCursorPosition', {
-        x: 32,
-        y: 32
-      });
     },
     changeActiveSwatchColor(context, payload) {
       const color = payload.hex ? payload.hex : payload;

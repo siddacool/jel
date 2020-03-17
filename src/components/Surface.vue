@@ -3,7 +3,6 @@
     <div
       class="surface"
       id="surface"
-      @mousemove.passive="e => mouseMove(e)"
       @click="e => handleLeftClick(e)"
       @contextmenu.prevent="(e, data) => handleRightClick(e, data)"
     >
@@ -15,7 +14,7 @@
 
 <script>
 import ContextMenu from './ContextMenu.vue';
-import { getMousePoisotion, getWindowDimention } from '../utils';
+import { getWindowDimention } from '../utils';
 
 export default {
   name: 'surface',
@@ -26,26 +25,16 @@ export default {
     ContextMenu
   },
   computed: {
-    // a computed getter
     backdrop() {
-      // `this` points to the vm instance
       return this.$store.getters.backdrop;
     },
     isColorPickerVisible() {
-      // `this` points to the vm instance
       return this.$store.state.isColorPickerVisible;
     }
   },
   methods: {
-    commonClickActions(e) {
-      // --slick-colorpicker-width: 256px;
-      // --slick-colorpicker-height: 213px;
+    commonClickActions() {
       this.$store.dispatch('hideColorPicker');
-      this.$store.dispatch('changeCursorPosition', getMousePoisotion(e));
-    },
-    mouseMove(e) {
-      if (this.isColorPickerVisible || getWindowDimention().x < 1025) return;
-      this.$store.dispatch('changeCursorPosition', getMousePoisotion(e));
     },
     handleLeftClick(e) {
       this.commonClickActions(e);
@@ -60,7 +49,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .surface {
   width: 100vw;
