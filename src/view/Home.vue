@@ -81,7 +81,7 @@ export default {
     },
     isKeyboardLocked() {
       return this.$store.state.isKeyboardLocked;
-    }
+    },
   },
   methods: {
     updateValue(e) {
