@@ -8,6 +8,7 @@
     <MobileMenu
       :darkTheme="isDarkThemeActive"
       :isColorPickerVisible="isColorPickerVisible"
+      :isMobileMenuVisible="isMobileMenuVisible"
     />
     <color-picker
       :backdrop="backdrop"
@@ -59,6 +60,10 @@ export default {
     isColorPickerVisible() {
       // `this` points to the vm instance
       return this.$store.state.isColorPickerVisible;
+    },
+    isMobileMenuVisible() {
+      // `this` points to the vm instance
+      return this.$store.state.isMobileMenuVisible;
     },
     backdrop() {
       // `this` points to the vm instance

@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="mobile-menu"
-    id="mobile-menu"
-    :class="isSettingsMenuVisible ? 'elevate' : null"
-  >
+  <div class="mobile-menu" id="mobile-menu">
     <div class="mobile-menu-container">
       <icon-btn
         size="large"
@@ -27,7 +23,7 @@
       <div
         class="menu-holder"
         v-show="isSettingsMenuVisible"
-        @click="handleLeftClick"
+        @click.self="handleLeftClick"
       >
         <ul class="menu" :class="darkTheme ? 'dark' : null">
           <li>
@@ -73,7 +69,7 @@ export default {
     };
   },
   components: {
-    checkmark: contextCheckmark,
+    checkmark: contextCheckmark
   },
   props: {
     darkTheme: Boolean,
@@ -88,56 +84,54 @@ export default {
       this.$store.dispatch('showColorPicker');
       this.isSettingsMenuVisible = false;
     },
+    handleLeftClick() {
+      this.$store.dispatch('hideColorPicker');
+      this.isSettingsMenuVisible = false;
+    },
     toggleDarkTheme() {
       this.$store.dispatch('toggleDarkTheme');
-    },
-    handleLeftClick(e) {
-      if (
-        e.target.tagName.toLowerCase() === 'a' ||
-        e.target.tagName.toLowerCase() === 'ul'
-      )
-        return;
-
-      this.closeSettings();
     }
   }
 };
 </script>
 
 <style scoped>
-.mobile-menu {
+/* .mobile-menu {
   position: fixed;
   width: 100vw;
   height: 100vh;
   top: 0;
   left: 0;
-}
+} */
 
-.mobile-menu.elevate {
+/* .mobile-menu.elevate {
   z-index: 2000;
-}
+} */
 
-.mobile-menu-container {
+/* .mobile-menu-container {
   position: relative;
-}
+} */
 
 .settings {
-  position: absolute;
-  z-index: 1000;
+  position: fixed;
+  z-index: 2000;
   top: var(--fencing-verticle);
   left: var(--fencing-horizontal);
 }
 
 .menu-holder {
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 100vh;
+  z-index: 2000;
   padding-left: var(--fencing-horizontal);
   padding-right: var(--fencing-horizontal);
   padding-top: var(--fencing-verticle);
   padding-bottom: var(--fencing-verticle);
   display: flex;
   align-items: flex-end;
+  bottom: 0;
+  left: 0;
 }
 
 .menu {

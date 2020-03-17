@@ -42,7 +42,8 @@ export default new Vuex.Store({
     isColorPickerVisible: true,
     swatches,
     darkTheme: false,
-    isKeyboardLocked: false
+    isKeyboardLocked: false,
+    isMobileMenuVisible: false
   },
   getters: {
     backdrop: state => {
