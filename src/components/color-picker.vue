@@ -68,7 +68,8 @@ export default {
     backdropFresh: String,
     updateValue: Function,
     hideColorPicker: Function,
-    darkTheme: Boolean
+    darkTheme: Boolean,
+    mousePos: Object
   },
   components: {
     'chrome-picker': Chrome
@@ -78,7 +79,7 @@ export default {
       const { x: width, y: height } = getWindowDimention();
       if (width < 1025) return null;
 
-      let { x, y } = this.$store.state.cursorPoistion;
+      let { x, y } = this.mousePos;
       const colorPickerWidth = 256;
       const colorPickerHeight = 265;
 

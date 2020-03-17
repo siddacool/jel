@@ -8,8 +8,12 @@
       :updateValue="updateValue"
       :hideColorPicker="hideColorPicker"
       :darkTheme="isDarkThemeActive"
+      :mousePos="mousePos"
     />
-    <Launcher :darkTheme="isDarkThemeActive" />
+    <Launcher
+      :darkTheme="isDarkThemeActive"
+      :resetMousePosition="resetMousePositionDetect"
+    />
   </div>
 </template>
 
@@ -17,6 +21,7 @@
 import Surface from '../components/Surface.vue';
 import colorPicker from '../components/color-picker.vue';
 import Launcher from '../components/Launcher.vue';
+import { getWindowDimention, getMousePoisotion } from '../utils';
 
 export default {
   name: 'Home',
@@ -24,6 +29,11 @@ export default {
     Surface,
     'color-picker': colorPicker,
     Launcher
+  },
+  data() {
+    return {
+      mousePos: {}
+    };
   },
   computed: {
     // a computed getter
@@ -71,13 +81,26 @@ export default {
       if (e.altKey && e.key === 'n') {
         this.$store.dispatch('toggleDarkTheme');
       }
+    },
+    mousePositionDetect(e) {
+      if (this.isColorPickerVisible || getWindowDimention().x < 1025) return;
+      this.mousePos = getMousePoisotion(e);
+    },
+    resetMousePositionDetect() {
+      if (this.isColorPickerVisible || getWindowDimention().x < 1025) return;
+      this.mousePos = {
+        x: 32,
+        y: 32
+      };
     }
   },
   created() {
     window.addEventListener('keydown', this.keyDetect);
+    window.addEventListener('mousemove', this.mousePositionDetect);
   },
   destroyed() {
     window.removeEventListener('keydown');
+    window.removeEventListener('mousemove');
   }
 };
 </script>
