@@ -78,6 +78,11 @@
           </span>
         </a>
       </li>
+      <li>
+        <a href="#" @click.prevent="showAbout">
+          About
+        </a>
+      </li>
     </vue-context>
   </div>
 </template>
@@ -120,6 +125,10 @@ export default {
     toggleKeyboardLock(e) {
       e.target.blur();
       this.$store.dispatch('toggleKeyboardLock');
+    },
+    showAbout(e) {
+      e.target.blur();
+      this.$store.dispatch('showAbout');
     }
   }
 };

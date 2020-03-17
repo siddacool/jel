@@ -1,4 +1,4 @@
-import Component from './Component.vue';
+import Component from './backdrop.vue';
 
 export default {
   install(Vue) {

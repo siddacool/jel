@@ -32,6 +32,11 @@
               Dark Theme
             </a>
           </li>
+          <li>
+            <a href="#" @click.prevent="showAbout">
+              About
+            </a>
+          </li>
           <icon-btn
             :darkTheme="darkTheme"
             :action="closeSettings"
@@ -90,6 +95,9 @@ export default {
     },
     toggleDarkTheme() {
       this.$store.dispatch('toggleDarkTheme');
+    },
+    showAbout() {
+      this.$store.dispatch('showAbout');
     }
   }
 };

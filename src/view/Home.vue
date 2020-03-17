@@ -19,6 +19,7 @@
       :darkTheme="isDarkThemeActive"
       :mousePos="mousePos"
     />
+    <About :show="isAboutVisible" :darkTheme="isDarkThemeActive"/>
   </div>
 </template>
 
@@ -27,6 +28,7 @@ import Surface from '../components/Surface.vue';
 import colorPicker from '../components/color-picker.vue';
 import Launcher from '../components/Launcher.vue';
 import MobileMenu from '../components/MobileMenu.vue';
+import About from '../components/About.vue';
 import { getWindowDimention, getMousePoisotion } from '../utils';
 
 const debounced = (delay, fn) => {
@@ -48,7 +50,8 @@ export default {
     Surface,
     'color-picker': colorPicker,
     Launcher,
-    MobileMenu
+    MobileMenu,
+    About
   },
   data() {
     return {
@@ -73,9 +76,12 @@ export default {
     isDarkThemeActive() {
       return this.$store.state.darkTheme;
     },
+    isAboutVisible() {
+      return this.$store.state.isAboutVisible;
+    },
     isKeyboardLocked() {
       return this.$store.state.isKeyboardLocked;
-    }
+    },
   },
   methods: {
     updateValue(e) {
