@@ -220,6 +220,7 @@ export default {
   height: 40px;
   border: 1px solid #ececec;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 .color-picker_swatches li.selected {
