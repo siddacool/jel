@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-holder" v-show="show" @click.self="onClose">
+  <div class="modal-holder" v-show="show" @click.self="onClose" :style="{ background: color }">
     <div class="modal" :class="darkTheme ? 'dark' : null">
       <header>
         <slot name="header"></slot>
@@ -39,7 +39,11 @@ export default {
   props: {
     darkTheme: Boolean,
     show: Boolean,
-    onClose: Function
+    onClose: Function,
+    color: {
+      type: String,
+      default: 'transparent'
+    }
   },
   components: {
     'icon-btn-component': iconBtnComponent
@@ -72,7 +76,7 @@ export default {
   padding-bottom: 3.6rem;
   font-weight: 400;
   position: relative;
-
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
 }
 
 main {
@@ -105,8 +109,34 @@ header {
 @media only screen and (min-width: 1025px),
   screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   .modal {
+    max-width: 720px;
+    margin: 0 auto;
+    max-height: 480px;
+    padding-left: var(--slick-colorpicker-fencing-horizontal);
+    padding-right: var(--slick-colorpicker-fencing-horizontal);
+    padding-top: var(--slick-colorpicker-fencing-verticle);
+    padding-bottom: var(--slick-colorpicker-fencing-verticle);
+  }
 
+  header {
+    padding-top: 2rem;
+  }
+
+  .close {
+    right: var(--slick-colorpicker-fencing-horizontal);
+    top: var(--slick-colorpicker-fencing-verticle);
+    bottom: initial;
+  }
+
+  header {
+    font-weight: 600;
+    text-align: left;
+    padding-top: 0;
+    text-align: left;
+  }
+
+  main {
+    height: calc(100% - 51px);
   }
 }
-
 </style>
