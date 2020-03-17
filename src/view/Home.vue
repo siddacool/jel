@@ -23,6 +23,19 @@ import colorPicker from '../components/color-picker.vue';
 import Launcher from '../components/Launcher.vue';
 import { getWindowDimention, getMousePoisotion } from '../utils';
 
+const debounced = (delay, fn) => {
+  let timerId;
+  return (...args) => {
+    if (timerId) {
+      clearTimeout(timerId);
+    }
+    timerId = setTimeout(() => {
+      fn(...args);
+      timerId = null;
+    }, delay);
+  };
+};
+
 export default {
   name: 'Home',
   components: {
@@ -95,8 +108,9 @@ export default {
     }
   },
   created() {
+    const dmousePositionDetect = debounced(50, this.mousePositionDetect);
     window.addEventListener('keydown', this.keyDetect);
-    window.addEventListener('mousemove', this.mousePositionDetect);
+    window.addEventListener('mousemove', dmousePositionDetect);
   },
   destroyed() {
     window.removeEventListener('keydown');
