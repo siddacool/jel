@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-holder" v-show="show">
+  <div class="modal-holder" v-show="show" @click.self="onClose">
     <div class="modal" :class="darkTheme ? 'dark' : null">
       <header>
         <slot name="header"></slot>
@@ -53,7 +53,6 @@ export default {
   z-index: 2000;
   left: 0;
   top: 0;
-  background-color: rgba(240, 230, 140, 0.342);
   width: 100vw;
   height: 100vh;
   padding-left: var(--fencing-horizontal);
