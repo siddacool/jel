@@ -1,18 +1,48 @@
 <template>
-  <div class="modal-holder">
-    <div class="modal">
+  <div class="modal-holder" v-show="show">
+    <div class="modal" :class="darkTheme ? 'dark' : null">
+      <header>
+        <slot name="header"></slot>
+      </header>
       <main>
         <slot></slot>
       </main>
+      <icon-btn-component
+        :darkTheme="darkTheme"
+        :action="onClose"
+        color="danger"
+        class="close"
+        svgSize="xsmall"
+        size="xsmall"
+        noGlass
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"
+          />
+        </svg>
+      </icon-btn-component>
     </div>
   </div>
 </template>
 
 <script>
+import iconBtnComponent from '../icon-btn/icon-btn.vue';
+
 export default {
   name: 'modal',
   props: {
-    darkTheme: Boolean
+    darkTheme: Boolean,
+    show: Boolean,
+    onClose: Function
+  },
+  components: {
+    'icon-btn-component': iconBtnComponent
   }
 };
 </script>
@@ -26,10 +56,51 @@ export default {
   background-color: rgba(240, 230, 140, 0.342);
   width: 100vw;
   height: 100vh;
+  padding-left: var(--fencing-horizontal);
+  padding-right: var(--fencing-horizontal);
+  padding-top: var(--fencing-verticle);
+  padding-bottom: var(--fencing-verticle);
+  display: flex;
 }
 
 .modal {
-  
+  background-color: #fff;
+  flex: 1;
+  border-radius: var(--round-desktop-card);
+  padding-left: var(--fencing-horizontal);
+  padding-right: var(--fencing-horizontal);
+  padding-top: var(--fencing-verticle);
+  padding-bottom: 3.6rem;
+  font-weight: 400;
+  position: relative;
+
+}
+
+main {
+  display: block;
+  height: calc(100% - 61px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: left;
+}
+
+header {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: left;
+  padding-bottom: var(--fencing-horizontal);
+}
+
+.close {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+}
+
+/* Dark Theme */
+.modal.dark {
+  background-color: var(--dark-bg-color);
+  color: var(--dark-color);
 }
 
 @media only screen and (min-width: 1025px),
@@ -38,4 +109,5 @@ export default {
 
   }
 }
+
 </style>
