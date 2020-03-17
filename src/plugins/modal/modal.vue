@@ -85,6 +85,7 @@ main {
   overflow-y: auto;
   overflow-x: hidden;
   text-align: left;
+  line-height: 2;
 }
 
 header {
@@ -109,9 +110,9 @@ header {
 @media only screen and (min-width: 1025px),
   screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   .modal {
-    max-width: 720px;
+    max-width: 900px;
     margin: 0 auto;
-    max-height: 480px;
+    max-height: 600px;
     padding-left: var(--slick-colorpicker-fencing-horizontal);
     padding-right: var(--slick-colorpicker-fencing-horizontal);
     padding-top: var(--slick-colorpicker-fencing-verticle);
