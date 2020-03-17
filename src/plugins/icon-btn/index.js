@@ -1,4 +1,4 @@
-import Component from './Component.vue';
+import Component from './icon-btn.vue';
 
 export default {
   install(Vue) {

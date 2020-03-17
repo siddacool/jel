@@ -19,6 +19,9 @@
       :darkTheme="isDarkThemeActive"
       :mousePos="mousePos"
     />
+    <modal>
+      awfwafw
+    </modal>
   </div>
 </template>
 
