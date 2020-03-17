@@ -43,7 +43,8 @@ export default new Vuex.Store({
     swatches,
     darkTheme: false,
     isKeyboardLocked: false,
-    isMobileMenuVisible: false
+    isMobileMenuVisible: false,
+    isAboutVisible: false
   },
   getters: {
     backdrop: state => {
@@ -107,6 +108,12 @@ export default new Vuex.Store({
     },
     toggleKeyboardLock(state) {
       state.isKeyboardLocked = !state.isKeyboardLocked;
+    },
+    toggleAboutVisibility(state) {
+      state.isAboutVisible = !state.isAboutVisible;
+    },
+    setAboutVisibility(state, visibility) {
+      state.isAboutVisible = visibility;
     }
   },
   actions: {
@@ -143,6 +150,15 @@ export default new Vuex.Store({
     },
     toggleKeyboardLock(context) {
       context.commit('toggleKeyboardLock');
+    },
+    toggleAbout(context) {
+      context.commit('toggleAboutVisibility');
+    },
+    showAbout(context) {
+      context.commit('setAboutVisibility', true);
+    },
+    hideAbout(context) {
+      context.commit('setAboutVisibility', false);
     }
   },
   plugins: [vuexPersist.plugin]
