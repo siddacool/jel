@@ -25,20 +25,15 @@ export default {
     ContextMenu
   },
   computed: {
-    // a computed getter
     backdrop() {
-      // `this` points to the vm instance
       return this.$store.getters.backdrop;
     },
     isColorPickerVisible() {
-      // `this` points to the vm instance
       return this.$store.state.isColorPickerVisible;
     }
   },
   methods: {
-    commonClickActions(e) {
-      // --slick-colorpicker-width: 256px;
-      // --slick-colorpicker-height: 213px;
+    commonClickActions() {
       this.$store.dispatch('hideColorPicker');
     },
     handleLeftClick(e) {
@@ -54,7 +49,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .surface {
   width: 100vw;
