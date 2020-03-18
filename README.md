@@ -10,8 +10,9 @@ jel can be controlled with keyboard shortcuts on Desktop.
 Make sure **keyboard lock is not checked 🔓** on context Menu (Right Click)
 
 * Colorpicker Toggle  - `alt + p`
-* Dark Theme Toggle - `alt + n`
-* Change color swatches - `Left Arrow (Prev) / Right Arrow (Next)`
+* Change color swatches - Use number row `1,2,3,4,5,6`
+* Color Swatch Prev - `Left Arrow`
+* Color Swatch Next - `Right Arrow`
 
 
 ### Visit App:
