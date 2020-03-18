@@ -5,11 +5,13 @@
       :darkTheme="isDarkThemeActive"
       :resetMousePosition="resetMousePositionDetect"
     />
-    <MobileMenu
-      :darkTheme="isDarkThemeActive"
-      :isColorPickerVisible="isColorPickerVisible"
-      :isMobileMenuVisible="isMobileMenuVisible"
-    />
+    <div v-if="isMobile">
+      <MobileMenu
+        :darkTheme="isDarkThemeActive"
+        :isColorPickerVisible="isColorPickerVisible"
+        :isMobileMenuVisible="isMobileMenuVisible"
+      />
+    </div>
     <color-picker
       :backdrop="backdrop"
       :backdropFresh="backdrop"
@@ -45,13 +47,18 @@ export default {
   components: {
     Surface: () => import('../components/Surface.vue'),
     Launcher: () => import('../components/Launcher.vue'),
-    MobileMenu: () => import('../components/MobileMenu.vue'),
+    MobileMenu: () =>
+      import(
+        /* webpackChunkName: "mobile-menu" */
+        '../components/MobileMenu.vue'
+      ),
     About: () => import('../components/About.vue'),
     'color-picker': colorPicker
   },
   data() {
     return {
-      mousePos: {}
+      mousePos: {},
+      isMobile: getWindowDimention().x < 1025
     };
   },
   computed: {
