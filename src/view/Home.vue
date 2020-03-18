@@ -82,6 +82,9 @@ export default {
     isKeyboardLocked() {
       return this.$store.state.isKeyboardLocked;
     },
+    swatchesLength() {
+      return this.$store.getters.swatches.length;
+    }
   },
   methods: {
     updateValue(e) {
@@ -92,6 +95,7 @@ export default {
     },
     keyDetect(e) {
       if (this.isKeyboardLocked) return;
+
       // Toggle Color Picker
       if (e.altKey && e.key === 'p') {
         this.$store.dispatch('toggleColorPicker');
@@ -107,9 +111,9 @@ export default {
         this.$store.dispatch('activatePrevSwatch');
       }
 
-      // prev swatch
-      if (e.altKey && e.key === 'n') {
-        this.$store.dispatch('toggleDarkTheme');
+      if (['1', '2', '3', '4', '5', '6'].indexOf(e.key) > -1) {
+        const index = parseInt(e.key, 10) - 1;
+        this.$store.dispatch('activateSwatch', index);
       }
     },
     mousePositionDetect(e) {

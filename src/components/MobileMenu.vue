@@ -27,17 +27,7 @@
         @click.self="handleLeftClick"
       >
         <ul class="menu" :class="darkTheme ? 'dark' : null">
-          <li>
-            <a href="#" @click.prevent="toggleDarkTheme">
-              <checkmark :isChecked="darkTheme" />
-              Dark Theme
-            </a>
-          </li>
-          <li>
-            <a href="#" @click.prevent="showAbout">
-              About
-            </a>
-          </li>
+          <CommonMenu :darkTheme="darkTheme" />
           <icon-btn
             :darkTheme="darkTheme"
             :action="closeSettings"
@@ -65,7 +55,7 @@
 </template>
 
 <script>
-import contextCheckmark from './context-checkmark';
+import CommonMenu from './CommonMenu';
 
 export default {
   name: 'MobileMenu',
@@ -75,7 +65,7 @@ export default {
     };
   },
   components: {
-    checkmark: contextCheckmark
+    CommonMenu
   },
   props: {
     darkTheme: Boolean,
@@ -93,34 +83,12 @@ export default {
     handleLeftClick() {
       this.$store.dispatch('hideColorPicker');
       this.isSettingsMenuVisible = false;
-    },
-    toggleDarkTheme() {
-      this.$store.dispatch('toggleDarkTheme');
-    },
-    showAbout() {
-      this.$store.dispatch('showAbout');
     }
   }
 };
 </script>
 
-<style scoped>
-/* .mobile-menu {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-} */
-
-/* .mobile-menu.elevate {
-  z-index: 2000;
-} */
-
-/* .mobile-menu-container {
-  position: relative;
-} */
-
+<style>
 .settings {
   position: fixed;
   z-index: 2000;
@@ -155,6 +123,14 @@ export default {
 
 .menu li {
   display: flex;
+}
+
+.menu li.desktop {
+  display: none;
+}
+
+.menu li .shortcut {
+  display: none;
 }
 
 .menu a {
