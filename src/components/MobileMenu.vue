@@ -83,34 +83,12 @@ export default {
     handleLeftClick() {
       this.$store.dispatch('hideColorPicker');
       this.isSettingsMenuVisible = false;
-    },
-    toggleDarkTheme() {
-      this.$store.dispatch('toggleDarkTheme');
-    },
-    showAbout() {
-      this.$store.dispatch('showAbout');
     }
   }
 };
 </script>
 
 <style>
-/* .mobile-menu {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-} */
-
-/* .mobile-menu.elevate {
-  z-index: 2000;
-} */
-
-/* .mobile-menu-container {
-  position: relative;
-} */
-
 .settings {
   position: fixed;
   z-index: 2000;
