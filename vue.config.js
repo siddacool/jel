@@ -7,11 +7,10 @@ module.exports = {
     }
   },
   lintOnSave: false,
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/jel/'
-    : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/jel/' : '/',
   devServer: {
     port: 80,
     host: '0.0.0.0'
-  }
+  },
+  productionSourceMap: false
 };
