@@ -104,11 +104,11 @@ export default {
 /* Color */
 .btn.default {
   background-color: var(--color-ui-default);
-  box-shadow: 0 0 2px rgba(189, 189, 189, 0.3), 1px 1px 4px rgba(189, 189, 189, 0.3);
+  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 5px 8px 0px rgba(0,0,0,0.14), 0px 1px 14px 0px rgba(0,0,0,0.12);
 }
 
 .btn.default:hover {
-  box-shadow: 0 0 4px rgba(189, 189, 189, 0.3), 2px 2px 8px rgba(189, 189, 189, 0.3);
+  box-shadow: 0px 8px 9px -5px rgba(0,0,0,0.2), 0px 15px 22px 2px rgba(0,0,0,0.14), 0px 6px 28px 5px rgba(0,0,0,0.12);
 }
 
 .btn.default svg {
@@ -178,12 +178,12 @@ export default {
 /* dark theme */
 .btn.dark.default {
   background-color: var(--dark-bg-hover-color);
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3), 1px 1px 4px rgba(0, 0, 0, 0.3);
 }
 
-.btn.dark.default:hover {
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3), 2px 2px 8px rgba(0, 0, 0, 0.3);
+.btn.dark.hover {
+  box-shadow: 0px 11px 15px -7px rgba(0,0,0,0.2), 0px 24px 38px 3px rgba(0,0,0,0.14), 0px 9px 46px 8px rgba(0,0,0,0.12);
 }
+
 .btn.dark.default svg {
   fill: var(--dark-color);
 }

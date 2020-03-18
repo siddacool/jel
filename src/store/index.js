@@ -33,7 +33,8 @@ const vuexPersist = new VuexPersist({
     isColorPickerVisible: state.isColorPickerVisible,
     swatches: state.swatches,
     darkTheme: state.darkTheme,
-    isKeyboardLocked: state.isKeyboardLocked
+    isKeyboardLocked: state.isKeyboardLocked,
+    isFirstStart: state.isFirstStart
   })
 });
 
@@ -44,11 +45,15 @@ export default new Vuex.Store({
     darkTheme: false,
     isKeyboardLocked: false,
     isMobileMenuVisible: false,
-    isAboutVisible: false
+    isAboutVisible: false,
+    isFirstStart: true
   },
   getters: {
     backdrop: state => {
       return state.swatches.find(swatch => swatch.selected).color;
+    },
+    swatches: state => {
+      return state.swatches.map(swatch => swatch.color);
     }
   },
   mutations: {
@@ -114,6 +119,9 @@ export default new Vuex.Store({
     },
     setAboutVisibility(state, visibility) {
       state.isAboutVisible = visibility;
+    },
+    setFirstStartEnd(state) {
+      state.isFirstStart = false;
     }
   },
   actions: {
@@ -159,6 +167,9 @@ export default new Vuex.Store({
     },
     hideAbout(context) {
       context.commit('setAboutVisibility', false);
+    },
+    endFirstStart(context) {
+      context.commit('setFirstStartEnd');
     }
   },
   plugins: [vuexPersist.plugin]
