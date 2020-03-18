@@ -1,7 +1,7 @@
 <template>
   <button
     class="btn"
-    :class="[colorClass, sizeClass, svgSizeClass, noGlassClass]"
+    :class="[colorClass, sizeClass, svgSizeClass, noGlassClass, darkThemeClass]"
     @click="action"
   >
     <slot></slot>
@@ -31,7 +31,8 @@ export default {
     noGlass: {
       type: Boolean,
       default: false
-    }
+    },
+    darkTheme: Boolean
   },
   computed: {
     // a computed getter
@@ -46,6 +47,9 @@ export default {
     },
     noGlassClass() {
       return this.noGlass ? 'no-glass' : '';
+    },
+    darkThemeClass() {
+      return this.darkTheme ? 'dark' : '';
     }
   }
 };
@@ -103,7 +107,7 @@ export default {
   box-shadow: 0 0 2px rgba(189, 189, 189, 0.3), 1px 1px 4px rgba(189, 189, 189, 0.3);
 }
 
-.btn:hover.default {
+.btn.default:hover {
   box-shadow: 0 0 4px rgba(189, 189, 189, 0.3), 2px 2px 8px rgba(189, 189, 189, 0.3);
 }
 
@@ -116,7 +120,7 @@ export default {
   box-shadow: 0 0 2px rgba(244, 67, 54, 0.3), 1px 1px 4px rgba(244, 67, 54, 0.3);
 }
 
-.btn:hover.danger {
+.btn.danger:hover {
   box-shadow: 0 0 4px rgba(244, 67, 54, 0.3), 2px 2px 8px rgba(244, 67, 54, 0.3);
 }
 
@@ -169,5 +173,24 @@ export default {
 /* No Glass */
 .btn.no-glass {
   opacity: 1;
+}
+
+/* dark theme */
+.btn.dark.default {
+  background-color: var(--dark-bg-hover-color);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3), 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.btn.dark.default:hover {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3), 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+.btn.dark.default svg {
+  fill: var(--dark-color);
+}
+.btn.dark.danger {
+  background-color: var(--dark-color-ui-danger);
+}
+.btn.dark.danger svg {
+  fill: var(--dark-color);
 }
 </style>
