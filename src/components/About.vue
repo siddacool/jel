@@ -79,6 +79,7 @@ li {
 .modal-holder {
   transition: background 3000ms;
 }
+
 @media only screen and (min-width: 1025px),
   screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   .content {
