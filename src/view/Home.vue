@@ -24,11 +24,7 @@
 </template>
 
 <script>
-import Surface from '../components/Surface.vue';
 import colorPicker from '../components/color-picker.vue';
-import Launcher from '../components/Launcher.vue';
-import MobileMenu from '../components/MobileMenu.vue';
-import About from '../components/About.vue';
 import { getWindowDimention, getMousePoisotion } from '../utils';
 
 const debounced = (delay, fn) => {
@@ -47,11 +43,11 @@ const debounced = (delay, fn) => {
 export default {
   name: 'Home',
   components: {
-    Surface,
-    'color-picker': colorPicker,
-    Launcher,
-    MobileMenu,
-    About
+    Surface: () => import('../components/Surface.vue'),
+    Launcher: () => import('../components/Launcher.vue'),
+    MobileMenu: () => import('../components/MobileMenu.vue'),
+    About: () => import('../components/About.vue'),
+    'color-picker': colorPicker
   },
   data() {
     return {
