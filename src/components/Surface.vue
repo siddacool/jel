@@ -8,21 +8,31 @@
     >
       <backdrop :color="backdrop" />
     </div>
-    <ContextMenu ref="menu" :darkTheme="darkTheme" />
+    <div v-if="isDesktop">
+      <ContextMenu ref="menu" :darkTheme="darkTheme" />
+    </div>
   </div>
 </template>
 
 <script>
-import ContextMenu from './ContextMenu.vue';
 import { getWindowDimention } from '../utils';
 
 export default {
   name: 'surface',
+  data() {
+    return {
+      isDesktop: getWindowDimention().x >= 1025
+    };
+  },
   props: {
     darkTheme: Boolean
   },
   components: {
-    ContextMenu
+    ContextMenu: () =>
+      import(
+        /* webpackChunkName: "context-menu" */
+        './ContextMenu.vue'
+      )
   },
   computed: {
     backdrop() {
