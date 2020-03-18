@@ -112,11 +112,12 @@ header {
   .modal {
     max-width: 900px;
     margin: 0 auto;
-    max-height: 600px;
+    max-height: 500px;
     padding-left: var(--slick-colorpicker-fencing-horizontal);
     padding-right: var(--slick-colorpicker-fencing-horizontal);
     padding-top: var(--slick-colorpicker-fencing-verticle);
     padding-bottom: var(--slick-colorpicker-fencing-verticle);
+    margin-top: 3rem;
   }
 
   header {
@@ -138,6 +139,7 @@ header {
 
   main {
     height: calc(100% - 51px);
+    text-align: center;
   }
 }
 </style>
