@@ -4,7 +4,7 @@
       :show="show"
       :darkTheme="darkTheme"
       :onClose="hideAbout"
-      :color="backdrop"
+      :color="aboutBackground ? aboutBackground : backdrop"
     >
       <template v-slot:header>About</template>
       <img src="../assets/logo.png" width="200" height="200" alt="jel" />
@@ -32,6 +32,13 @@
 <script>
 export default {
   name: 'About',
+  data() {
+    return {
+      swatches: this.$store.getters.swatches,
+      colorWave: true,
+      aboutBackground: null
+    };
+  },
   props: {
     darkTheme: Boolean,
     show: Boolean
@@ -45,6 +52,26 @@ export default {
     hideAbout() {
       this.$store.dispatch('hideAbout');
     }
+  },
+  created() {
+    let iterator = 0;
+    const interval = setInterval(() => {
+      if (!this.colorWave) {
+        clearInterval(interval);
+        return;
+      }
+
+      if (!this.swatches[iterator]) {
+        iterator = 0;
+      }
+
+      this.aboutBackground = this.swatches[iterator];
+
+      iterator++;
+    }, 4000);
+  },
+  destroyed() {
+    this.colorWave = false;
   }
 };
 </script>
@@ -64,6 +91,9 @@ li {
 }
 .content {
   display: none;
+}
+.modal-holder {
+  transition: background 3000ms;
 }
 @media only screen and (min-width: 1025px),
   screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
