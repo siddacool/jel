@@ -21,7 +21,9 @@
       :darkTheme="isDarkThemeActive"
       :mousePos="mousePos"
     />
-    <About :show="isAboutVisible" :darkTheme="isDarkThemeActive"/>
+    <div v-if="isAboutVisible">
+      <About :show="isAboutVisible" :darkTheme="isDarkThemeActive" />
+    </div>
   </div>
 </template>
 
@@ -52,7 +54,11 @@ export default {
         /* webpackChunkName: "mobile-menu" */
         '../components/MobileMenu.vue'
       ),
-    About: () => import('../components/About.vue'),
+    About: () =>
+      import(
+        /* webpackChunkName: "about" */
+        '../components/About.vue'
+      ),
     'color-picker': colorPicker
   },
   data() {
