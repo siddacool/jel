@@ -24,34 +24,8 @@ export default {
     CommonMenu
   },
   computed: {
-    swatches() {
-      return this.$store.state.swatches;
-    },
     isColorPickerVisible() {
       return this.$store.state.isColorPickerVisible;
-    },
-    isKeyboardLocked() {
-      return this.$store.state.isKeyboardLocked;
-    }
-  },
-  methods: {
-    toggleColorPicker() {
-      this.$store.dispatch('toggleColorPicker');
-    },
-    activeSwatch(index) {
-      this.$store.dispatch('activateSwatch', index);
-    },
-    toggleDarkTheme(e) {
-      e.target.blur();
-      this.$store.dispatch('toggleDarkTheme');
-    },
-    toggleKeyboardLock(e) {
-      e.target.blur();
-      this.$store.dispatch('toggleKeyboardLock');
-    },
-    showAbout(e) {
-      e.target.blur();
-      this.$store.dispatch('showAbout');
     }
   }
 };
