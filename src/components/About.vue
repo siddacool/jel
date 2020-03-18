@@ -12,19 +12,6 @@
       Need interesting lights for a photoshoot ?
       <br />
       Use phone/computer screen as RBG Light Panels
-      <div class="content">
-        <br />
-        <hr />
-        <h3>Keybaord Shortcuts</h3>
-        jel can be controlled with keyboard shortcuts on Desktop.
-        <br />
-        Make sure keyboard lock is not checked 🔓 on context Menu (Right Click)
-        <ul>
-          <li>Colorpicker Toggle - alt + p</li>
-          <li>Dark Theme Toggle - alt + n</li>
-          <li>Change color swatches - Left Arrow (Prev) / Right Arrow (Next)</li>
-        </ul>
-      </div>
     </modal>
   </div>
 </template>
@@ -88,9 +75,6 @@ ul {
 }
 li {
   display: list-item;
-}
-.content {
-  display: none;
 }
 .modal-holder {
   transition: background 3000ms;
