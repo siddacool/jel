@@ -106,11 +106,6 @@ export default {
       if (e.key === 'ArrowLeft') {
         this.$store.dispatch('activatePrevSwatch');
       }
-
-      // prev swatch
-      if (e.altKey && e.key === 'n') {
-        this.$store.dispatch('toggleDarkTheme');
-      }
     },
     mousePositionDetect(e) {
       if (this.isColorPickerVisible || getWindowDimention().x < 1025) return;

@@ -12,13 +12,6 @@
         </a>
       </li>
       <li>
-        <a href="#" @click.prevent="toggleDarkTheme">
-          <checkmark :isChecked="darkTheme" />
-          Dark Theme
-          <span class="shortcut">alt + n</span>
-        </a>
-      </li>
-      <li>
         <div class="group">
           <p>
             Swatches
@@ -58,6 +51,12 @@
             </li>
           </div>
         </div>
+      </li>
+      <li>
+        <a href="#" @click.prevent="toggleDarkTheme">
+          <checkmark :isChecked="darkTheme" />
+          Dark Theme
+        </a>
       </li>
       <li>
         <a href="#" @click.prevent="toggleKeyboardLock">
